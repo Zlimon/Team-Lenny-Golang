@@ -8,4 +8,5 @@ func main() {
 	fmt.Println("Hello, Kristian")
 	fmt.Println("Hello, Marius")
 	fmt.Println("Hello, Magnus")
+	fmt.Println("wowee")
 }

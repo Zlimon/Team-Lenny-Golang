@@ -26,6 +26,6 @@ Objektfiler deltar i programkobling (bygge et program) og programgjøre (kjører
     <li>Kanskje mer effektiv</li>
     <li>Lettere å lese</li>
 </ul>
-
+ hlululululu
 </body>
 </html>

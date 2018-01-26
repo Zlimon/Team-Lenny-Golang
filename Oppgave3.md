@@ -14,7 +14,7 @@ Objektfiler deltar i programkobling (bygge et program) og programgjøre (kjører
 <p>Jeg vet ikke for mye om objektfiler eller operativsystemer, men jeg tror at disse operativsystemene har forskjellige objektfiler fordi de ganske enkelt er skrevet forskjellig og har forskjellige behov.</p>
 
 <p>2. Hvilke forskjeller ser du i forhold til programmeringsspråket Java?
-<br>GO:</p> 
+<br>GO:</p>
 <ul>
     <li>Hvert program består av pakker</li>
     <li>Starter i pakken "main"</li>

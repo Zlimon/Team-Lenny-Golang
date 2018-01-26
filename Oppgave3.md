@@ -10,7 +10,7 @@ Mac OS X: Mach-O (Mach-objektfilformat) er et filformat for kjørbare filer, obj
 
 Jeg vet ikke for mye om objektfiler eller operativsystemer, men jeg tror at disse operativsystemene har forskjellige objektfiler fordi de ganske enkelt er skrevet forskjellig og har forskjellige behov.
 
-1. Hvilke forskjeller ser du i forhold til programmeringsspråket Java?
+2. Hvilke forskjeller ser du i forhold til programmeringsspråket Java?
 GO: 
 - Hvert program består av pakker
 - Starter i pakken "main"

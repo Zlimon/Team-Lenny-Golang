@@ -1,6 +1,6 @@
-Oppgave 3
-1. Finn ut hva  objekt filer heter for de mest brukte platformene (Unix/Linux, MS Windows, Mac OS X)! Hvorfor, etter din mening, har disse plattformene så forskjellige objektfil-formater?
-Objektfiler deltar i programkobling (bygge et program) og programgjøre (kjører et program) For enkelhets skyld og effektivitet gir objektfilformatet parallelle visninger av innholdet i en fil, noe som gjenspeiler de ulike behovene til disse aktivitetene.
+<b> Oppgave 3 </b>
+<p>1. Finn ut hva  objekt filer heter for de mest brukte platformene (Unix/Linux, MS Windows, Mac OS X)! Hvorfor, etter din mening, har disse plattformene så forskjellige objektfil-formater?
+Objektfiler deltar i programkobling (bygge et program) og programgjøre (kjører et program) For enkelhets skyld og effektivitet gir objektfilformatet parallelle visninger av innholdet i en fil, noe som gjenspeiler de ulike behovene til disse aktivitetene.</p>
 
 Unix / Linux: ELF (Executable og Linking Format) er et vanlig standard filformat for kjørbare filer, objektkode, delte biblioteker og kjernefelt.
 
@@ -10,7 +10,7 @@ Mac OS X: Mach-O (Mach-objektfilformat) er et filformat for kjørbare filer, obj
 
 Jeg vet ikke for mye om objektfiler eller operativsystemer, men jeg tror at disse operativsystemene har forskjellige objektfiler fordi de ganske enkelt er skrevet forskjellig og har forskjellige behov.
 
-2. Hvilke forskjeller ser du i forhold til programmeringsspråket Java?
+1. Hvilke forskjeller ser du i forhold til programmeringsspråket Java?
 GO: 
 - Hvert program består av pakker
 - Starter i pakken "main"

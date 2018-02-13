@@ -9,5 +9,6 @@ func main() {
 		fmt.Printf("%X  ", j)
 		fmt.Printf("%c  ", j)
 		fmt.Printf("%b  ", j)
+		fmt.Println("")
 	}
 }

@@ -1,0 +1,14 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	randomteller := 0
+	for i := 0; i < 1; randomteller++ {
+		random := rand.Intn(1000000)
+		fmt.Println("Et tall:", random)
+	}
+}

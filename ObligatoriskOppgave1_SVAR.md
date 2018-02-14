@@ -89,7 +89,7 @@ b)
 
 **Oppgave 3**
 
-https://imgur.com/a/7UW3L
+https://i.imgur.com/o2fkKLy.png
 
 
 

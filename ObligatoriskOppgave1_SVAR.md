@@ -85,6 +85,10 @@ b)
 
 (Se Oppgave2B_Bubble_sort_test.go)
 
+c)
+
+(Se Oppgave2C_QSorting_test.go)
+
 
 
 **Oppgave 3**

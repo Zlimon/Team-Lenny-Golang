@@ -2,8 +2,8 @@
 
 Hvordan gå fra binære eller heksadesimal til desimal:
 Bruk formelen verdi = siffer * grunntallposisjon
-Grunntallet er alltid det same som antall tilgjengelige siffer i det tallsystemet,
-posisjon er her sifferets posisjon i tallet, posisjonen lengst til høgre er 0, øker mot venstre. 
+Grunntallet er alltid det samme som antall tilgjengelige siffer i det tallsystemet,
+posisjon er her sifferets posisjon i tallet, posisjonen lengst til høyre er 0, øker mot venstre. 
 
 Eksempel:
 10101

@@ -18,7 +18,6 @@ func BubbleSort(list[] int)[]int {
 	return list
 }
 
-// https://golang.org/doc/effective_go.html#init
 func init() {
 	seed := time.Now().Unix()
 	rand.Seed(seed)
@@ -30,9 +29,6 @@ func perm(n int) (out []int) {
 	}
 	return
 }
-
-// Skriv "benchmark"-tester for benchmarkBSortModified funksjonen
-// Skriv en ny testfunksjon benchmarkBSortModified
 
 func BenchmarkBSort100(b *testing.B) {
 	benchmarkBSort(100, b)

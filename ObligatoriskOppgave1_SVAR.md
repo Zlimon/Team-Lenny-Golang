@@ -95,6 +95,7 @@ c)
 
 https://i.imgur.com/o2fkKLy.png
 <br>
+En avslutningsmelding blir printet når programmet mottar et SIGINT signal:
 https://i.imgur.com/n1RN72X.png
 
 

@@ -87,8 +87,9 @@ b)
 
 
 
+**Oppgave 3**
 
-
+https://imgur.com/a/7UW3L
 
 
 

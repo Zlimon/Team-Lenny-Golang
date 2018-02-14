@@ -93,6 +93,7 @@ c)
 
 **Oppgave 3**
 
+(Se Oppgave3_løkke.go)
 https://i.imgur.com/o2fkKLy.png
 <br>
 En avslutningsmelding blir printet når programmet mottar et SIGINT signal:

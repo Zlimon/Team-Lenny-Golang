@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-	randomteller := 0
-	for i := 0; i < 1; randomteller++ {
+	for i := 0; i < 1; {
 		random := rand.Intn(1000000)
 		fmt.Println("Et tall:", random)
 	}

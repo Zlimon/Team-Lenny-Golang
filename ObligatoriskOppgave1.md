@@ -75,8 +75,15 @@ Ekempel:
 
 
 
+**Oppgave 2**
 
+a)
 
+(Se BubbleSort.go) 
+
+b)
+
+(Se Oppgave2B_Bubble_sort_test.go)
 
 
 

@@ -90,6 +90,7 @@ b)
 **Oppgave 3**
 
 https://i.imgur.com/o2fkKLy.png
+https://i.imgur.com/n1RN72X.png
 
 
 

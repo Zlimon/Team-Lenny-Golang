@@ -1,4 +1,10 @@
-//Oppgave 4
+/**Oppgave 4
+* 0x80 - 0x9F blir vist som en firekant istedenfor sitt satte symbol på alle datamaskinene undtatt en macbook
+* hvor 0x80 blir vist som deletegnet. 
+* Dette er nok på grunn av forskjellig standardvalgt file encoding på windows og macOS
+*
+*
+**/
 package main
 
 import(

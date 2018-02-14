@@ -79,11 +79,11 @@ Ekempel:
 
 a)
 
-(Se BubbleSort.go) 
+(Se Oppgave2A_BubbleSort.go) 
 
 b)
 
-(Se Oppgave2B_Bubble_sort_test.go)
+(Se Oppgave2B_BubbleSort_test.go)
 
 c)
 
@@ -105,11 +105,16 @@ https://i.imgur.com/n1RN72X.png
 
 
 **Oppgave 4**:
+a)
 
-(se "Oppgave4_hexloop2.go" filen)
+(Se "Oppgave4A_hexloop2.go" filen)
 
 0x80 - 0x9F blir vist som en firekant istedenfor sitt satte symbol på alle datamaskinene unntatt en macbook hvor 0x80 blir vist som deletegnet. 
 Dette er nok på grunn av forskjellig standardvalgt file encoding på windows og macOS.
+
+b)
+
+(Se "Oppgave4B_Oppgave4B.go)
 
 
 

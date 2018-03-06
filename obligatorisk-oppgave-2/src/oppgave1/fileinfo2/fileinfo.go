@@ -22,45 +22,45 @@ func fileInfo(filename string) {
 	Mega := Kilo / 1024
 	Giga := Mega / 1024
 
-	fmt.Printf("Infomation about file:", filename)
+	fmt.Printf("Filinformasjon:", filename)
 	fmt.Println("Bytes: ", Bytes)
 	fmt.Println("Kilobytes: ", Kilo)
 	fmt.Println("Megabytes: ", Mega)
 	fmt.Println("Gigabytes: ", Giga)
 
 	if fileInfo.Mode().IsDir() == true {
-		fmt.Println("Is a directory")
+		fmt.Println("Er et directory")
 	} else if fileInfo.Mode().IsDir() == false {
-		fmt.Println("Is not a directory")
+		fmt.Println("Er ikke et directory")
 
 
 		if fileInfo.Mode().IsRegular() {
-			fmt.Println("Is a regular file")
+			fmt.Println("Er en regular file")
 		} else {
-			fmt.Println("Is not a regular file")
+			fmt.Println("Er ikke en regular file")
 		}
 
 
-		fmt.Println("Has Unix permission bits:", fileInfo.Mode().Perm())
+		fmt.Println("Har Unix permission bits:", fileInfo.Mode().Perm())
 
 		if fileInfo.Mode()&os.ModeAppend == os.ModeAppend {
-			fmt.Println("Is append only")
+			fmt.Println("Er append only")
 		} else {
-			fmt.Println("Is not append only")
+			fmt.Println("Er ikke append only")
 		}
 
 
 		if fileInfo.Mode()&os.ModeDevice == os.ModeDevice {
-			fmt.Println("Is a device file: true")
+			fmt.Println("Er en device file: true")
 		} else {
-			fmt.Println("Is a device file: false")
+			fmt.Println("Er en device file: false")
 		}
 
 
 		if fileInfo.Mode()&os.ModeSymlink == os.ModeSymlink {
-			fmt.Println("Is a symbolic link")
+			fmt.Println("Er en symbolic link")
 		} else {
-			fmt.Println("Is not a Symbolic link")
+			fmt.Println("Er ikke en Symbolic link")
 		}
 	}
 }

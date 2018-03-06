@@ -17,17 +17,16 @@ func fileInfo(filename string) {
 		log.Fatal(err)
 	}
 
-	bytes := float64(fileInfo.Size())
-	kilo := bytes / 1024
-	mega := kilo / 1024
-	giga := mega / 1024
+	Bytes := float64(fileInfo.Size())
+	Kilo := Bytes / 1024
+	Mega := Kilo / 1024
+	Giga := Mega / 1024
 
-	//Informasjon om filen printes ut via Println
 	fmt.Printf("Infomation about file:", filename)
-	fmt.Println("Bytes: ", bytes)
-	fmt.Println("Kilobytes: ", kilo)
-	fmt.Println("Megabytes: ", mega)
-	fmt.Println("Gigabytes: ", giga)
+	fmt.Println("Bytes: ", Bytes)
+	fmt.Println("Kilobytes: ", Kilo)
+	fmt.Println("Megabytes: ", Mega)
+	fmt.Println("Gigabytes: ", Giga)
 
 	if fileInfo.Mode().IsDir() == true {
 		fmt.Println("Is a directory")

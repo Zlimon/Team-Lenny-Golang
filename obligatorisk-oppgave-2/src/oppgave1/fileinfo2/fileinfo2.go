@@ -51,9 +51,9 @@ func fileInfo(filename string) {
 
 
 		if fileInfo.Mode()&os.ModeDevice == os.ModeDevice {
-			fmt.Println("Er en device file: true")
+			fmt.Println("Er en device file")
 		} else {
-			fmt.Println("Er en device file: false")
+			fmt.Println("Er ikke en device file")
 		}
 
 

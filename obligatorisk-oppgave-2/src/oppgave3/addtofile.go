@@ -4,29 +4,32 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"log"
 )
 
 func main() {
-	f, err := os.Create("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/fil.txt")
+	fil, err := os.Create("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt")
+	errorCheck(err)
 
-	writer := bufio.NewWriter(f)
 	reader := bufio.NewReader(os.Stdin)
+	writer := bufio.NewWriter(fil)
 
 	fmt.Print("Enter number 1: ")
-	input, err := reader.ReadString('\n')
-	fmt.Print("Enter number 1: ")
-	input2, err := reader.ReadString('\n')
+	number1, err := reader.ReadString('\n')
+	fmt.Print("Enter number 2: ")
+	number2, err := reader.ReadString('\n')
 
+	number1int := ("Number_1:" + number1)
 
-	write, err := writer.WriteString(input)
-	write2, err := writer.WriteString(input2)
+	writer.WriteString(number1int)
+	writer.WriteString(number2)
 
-	fmt.Println(write, write2)
+	fmt.Println()
 
 	writer.Flush()
+}
 
+func errorCheck(err error) {
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 }

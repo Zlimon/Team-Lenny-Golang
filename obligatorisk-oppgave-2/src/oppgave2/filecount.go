@@ -12,7 +12,7 @@ import (
 func main() {
 	fil, err := os.Open("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via os.Open
 
-	fil2, err := ioutil.ReadFile("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text1.txt") //Henter fil via ioutil.ReadFile
+	fil2, err := ioutil.ReadFile("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via ioutil.ReadFile
 
 	if err != nil {
 		log.Fatal(err)
@@ -77,13 +77,12 @@ func main() {
 			max = value
 		}
 	}
-	fmt.Println(max)
 
 	fmt.Println("Information about text.txt:")
 	fmt.Println("Number of lines in file:", lineCounter)
 	//fmt.Println("Total runes:", utf8.RuneCount(fil2)) //Teller hvor mange runes det er i HELE filen.
 	fmt.Println("Most common runes:")
-	fmt.Println("1. Rune:", amountRuneA)
+	fmt.Println("1. Rune:", max)
 	fmt.Println("2. Rune:", amountRuneB)
 	fmt.Println("3. Rune:", amountRuneC)
 	fmt.Println("4. Rune:", amountRuneD)

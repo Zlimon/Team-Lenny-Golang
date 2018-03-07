@@ -9,7 +9,7 @@ import (
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter Filename: ")
+	fmt.Print("Enter Filename:")
 	text, _ := reader.ReadString('\n')
 	fmt.Println(text)
 	fi, err := os.Lstat(text)

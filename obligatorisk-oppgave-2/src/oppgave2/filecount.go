@@ -10,9 +10,14 @@ import (
 )
 
 func main() {
-	fil, err := os.Open("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via os.Open
+	/**
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter filename: ")
+	fileName, _ := reader.ReadString('\n')
+	*/
 
-	fil2, err := ioutil.ReadFile("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via ioutil.ReadFile
+	fil, err := os.Open("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via os.Open
+	fil2, err := ioutil.ReadFile("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via ioutil.ReadFile
 
 	if err != nil {
 		log.Fatal(err)

@@ -20,11 +20,12 @@ func main() {
 		ch <- number2
 	}()
 
-	fmt.Println("Number 1:", <-ch,"\nNumber 2:", <-ch)
+	//fmt.Println("Number 1:", <-ch,"\nNumber 2:", <-ch)
 
+	total = number1 + number2
 	go func() {
-		total = <-ch + <-ch
+		ch <- total
 	}()
 
-	fmt.Println("Total: ", total)
+	fmt.Println("Total =", <-ch)
 }

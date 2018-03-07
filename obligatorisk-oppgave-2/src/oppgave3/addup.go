@@ -23,12 +23,12 @@ func main() {
 		ch <- number2
 	}()
 
-	fmt.Println("Number 1:", <-ch,"\nNumber 2:", <-ch) //Printer ut de 2 første kanalene.
+	//fmt.Println("Number 1:", <-ch,"\nNumber 2:", <-ch) //Printer ut de 2 første kanalene.
 
 	/**
 	Adderer tallene, og putter dem i 1 kanal.
 	 */
-	total = number1 + number2
+	total = <-ch + <-ch
 	go func() {
 		ch <- total
 	}()

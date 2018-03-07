@@ -23,6 +23,7 @@ func fileInfo(filename string) {
 	Giga := Mega / 1024
 
 	fmt.Printf("Filinformasjon:", filename)
+	fmt.Println("")
 	fmt.Println("Bytes: ", Bytes)
 	fmt.Println("Kilobytes: ", Kilo)
 	fmt.Println("Megabytes: ", Mega)

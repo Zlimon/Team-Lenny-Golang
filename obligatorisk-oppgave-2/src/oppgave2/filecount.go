@@ -26,7 +26,7 @@ func main() {
 	fileScanner := bufio.NewScanner(fil)
 
 	/**
-	En løkke som benytter fileScanner for å telle hver linje.
+	En løkke som benytter fileScanner for å gå igjennom hver linje, og adderer 1 i en variabel.
 	 */
 	lineCounter := 0
 	for fileScanner.Scan() {
@@ -36,7 +36,7 @@ func main() {
 	s := string(fil2) //Konverterer text.txt til en string.
 
 	/**
-	Alfabet; adderer store og små bokstaver.
+	Alfabet; adderer tilsvarende store og små bokstaver sammen.
 	 */
 	amountRuneA := strings.Count(s, "A") + strings.Count(s, "a")
 	amountRuneB := strings.Count(s, "B") + strings.Count(s, "b")

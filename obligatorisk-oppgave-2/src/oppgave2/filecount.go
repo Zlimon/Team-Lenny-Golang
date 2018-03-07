@@ -10,12 +10,10 @@ import (
 )
 
 func main() {
-	fil, err := os.Open("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
+	fil, err := os.Open("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via os.Open
 
-	fil2, err := ioutil.ReadFile("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text1.txt")
+	fil2, err := ioutil.ReadFile("C:/Users/Simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave2/text1.txt") //Henter fil via ioutil.ReadFile
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,6 +30,9 @@ func main() {
 
 	s := string(fil2) //Konverterer text.txt til en string.
 
+	/**
+	Alfabet; adderer store og små bokstaver.
+	 */
 	amountRuneA := strings.Count(s, "A") + strings.Count(s, "a")
 	amountRuneB := strings.Count(s, "B") + strings.Count(s, "b")
 	amountRuneC := strings.Count(s, "C") + strings.Count(s, "c")
@@ -67,6 +68,9 @@ func main() {
 		amountRuneU, amountRuneV, amountRuneW, amountRuneX, amountRuneY, amountRuneZ,
 	}
 
+	/**
+	Teller hvilken rune som er brukt mest.
+	 */
 	var max int = amountRunes[0]
 	for _, value := range amountRunes {
 		if max < value {
@@ -77,10 +81,10 @@ func main() {
 
 	fmt.Println("Information about text.txt:")
 	fmt.Println("Number of lines in file:", lineCounter)
-	//fmt.Println("Total runes:", utf8.RuneCount(fil2))
+	//fmt.Println("Total runes:", utf8.RuneCount(fil2)) //Teller hvor mange runes det er i HELE filen.
 	fmt.Println("Most common runes:")
-	fmt.Println("1. Rune:", amountRuneA, amountRunes[0])
-	fmt.Println("2. Rune:", amountRuneB, amountRunes[1])
+	fmt.Println("1. Rune:", amountRuneA)
+	fmt.Println("2. Rune:", amountRuneB)
 	fmt.Println("3. Rune:", amountRuneC)
 	fmt.Println("4. Rune:", amountRuneD)
 	fmt.Println("5. Rune:", amountRuneE)

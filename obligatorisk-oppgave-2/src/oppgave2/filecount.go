@@ -94,15 +94,16 @@ func main() {
 	fmt.Println("4. Rune:", amountRuneD)
 	fmt.Println("5. Rune:", amountRuneE)
 	*/
-	fmt.Print("1. Rune: ","Counts: ",amountRunes[25])
+	fmt.Print("1. Rune: ","E ","Counts: ",amountRunes[25])
 	fmt.Println("")
-	fmt.Print("2. Rune: ","Counts: ",amountRunes[24])
+	fmt.Print("2. Rune: ","T ","Counts: ",amountRunes[24])
 	fmt.Println("")
-	fmt.Print("3. Rune: ","Counts: ",amountRunes[23])
+	fmt.Print("3. Rune: ","O ","Counts: ",amountRunes[23])
 	fmt.Println("")
-	fmt.Print("4. Rune: ","Counts: ",amountRunes[22])
+	fmt.Print("4. Rune: ","A ","Counts: ",amountRunes[22])
 	fmt.Println("")
-	fmt.Print("5. Rune: ","Counts: ",amountRunes[21])
+	fmt.Print("5. Rune: ","I ","Counts: ",amountRunes[21])
+
 
 }
 

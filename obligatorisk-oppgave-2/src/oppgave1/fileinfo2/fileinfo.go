@@ -16,12 +16,13 @@ func fileInfo(filename string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	// Regner om bytes til KiloBytes, MegaBytes og GigaBytes
 	Bytes := float64(fileInfo.Size())
 	Kilo := Bytes / 1024
 	Mega := Kilo / 1024
 	Giga := Mega / 1024
 
+	//Printer ut Diverse filinformasjon (Størrelse, IsDir, IsRegular, Unix permissions, Device file, Symbolic link)
 	fmt.Printf("Filinformasjon:", filename)
 	fmt.Println("")
 	fmt.Println("Bytes: ", Bytes)

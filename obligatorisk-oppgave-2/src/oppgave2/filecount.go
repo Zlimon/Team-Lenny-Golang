@@ -84,9 +84,7 @@ func main() {
 	}
 	{sort.Ints(amountRunes)}
 
-	fmt.Println("Information about text.txt:")
-	fmt.Println("")
-	fmt.Println("Number of lines in file:", lineCounter)
+
 	//fmt.Println("Total runes:", utf8.RuneCount(fil2)) //Teller hvor mange runes det er i HELE filen.
 	/*fmt.Println("Most common runes:")
 	fmt.Println("1. Rune:", max)
@@ -95,6 +93,9 @@ func main() {
 	fmt.Println("4. Rune:", amountRuneD)
 	fmt.Println("5. Rune:", amountRuneE)
 	*/
+	fmt.Println("Information about text.txt:")
+	fmt.Println("")
+	fmt.Println("Number of lines in file:", lineCounter)
 	fmt.Println("")
 	fmt.Println("Most common runes:")
 	fmt.Println("")

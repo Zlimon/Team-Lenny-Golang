@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9dcf67f7-0c67-4eb7-bae7-357b9b074102" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/Team-Lenny.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-    </list>
+    <list default="true" id="9dcf67f7-0c67-4eb7-bae7-357b9b074102" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

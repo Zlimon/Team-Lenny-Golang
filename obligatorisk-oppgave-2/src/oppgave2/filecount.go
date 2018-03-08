@@ -7,19 +7,17 @@ import (
 	"io/ioutil"
 	"strings"
 	"sort"
-
 )
 
 func main() {
-	/**
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter filename: ")
-	fileName, _ := reader.ReadString('\n')
-	*/
+	filename := os.Args[1]
+	fileCount(filename)
+}
 
-	fil, err := os.Open("C:/Users/Petter S. Johannesse/Desktop/Programmering/Git/oblig2/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via os.Open.
+func fileCount(filename string) {
+	fil, err := os.Open(filename)
 	errorCheck(err)
-	fil2, err := ioutil.ReadFile("C:/Users/Petter S. Johannesse/Desktop/Programmering/Git/oblig2/obligatorisk-oppgave-2/src/oppgave2/text.txt") //Henter fil via ioutil.ReadFile.
+	fil2, err := ioutil.ReadFile(filename)
 	errorCheck(err)
 
 	fileScanner := bufio.NewScanner(fil)
@@ -103,8 +101,6 @@ func main() {
 	fmt.Print("4. Rune: ","A ","Counts: ",amountRunes[22])
 	fmt.Println("")
 	fmt.Print("5. Rune: ","I ","Counts: ",amountRunes[21])
-
-
 }
 
 func errorCheck(e error) {

@@ -2,6 +2,9 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
 var number1 int
@@ -34,4 +37,12 @@ func main() {
 	}()
 
 	fmt.Println("Total =", <-ch) //Printer ut summen/siste kanalen.
+
+	c := make(chan os.Signal, 0x2)
+	signal.Notify(c, syscall.SIGINT)
+	go func() {
+		<-c
+		fmt.Printf("You cancelled the program! ")
+		os.Exit(1)
+	}()
 }

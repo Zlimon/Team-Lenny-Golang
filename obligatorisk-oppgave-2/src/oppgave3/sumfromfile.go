@@ -9,8 +9,13 @@ import (
 	"strings"
 )
 
-func main() { //os.Stat
-	fil2, err := ioutil.ReadFile("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt")
+func main() {
+	filename := os.Args[1]
+	sumFromFile(filename)
+}
+
+func sumFromFile(filename string) {
+	fil2, err := ioutil.ReadFile(filename)
 	errorCheck(err)
 
 	str := string(fil2) //Konverterer filen til en string.
@@ -24,7 +29,7 @@ func main() { //os.Stat
 	if strings.Contains(str, completeCheck) {
 		fmt.Println("This file is already calculated!")
 	} else {
-		fil, err := os.Open("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt")
+		fil, err := os.Open(filename)
 
 		reader := bufio.NewScanner(fil)
 
@@ -46,9 +51,9 @@ func main() { //os.Stat
 			number2 = lineTwo
 			total = number1 + number2
 		}
-		fmt.Println("Summen:", number1, "+", number2, "=", total)
+		fmt.Println("Answer:", number1, "+", number2, "=", total)
 
-		fil2, err := os.Create("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt") //Oppretter ny fil via os.Create.
+		fil2, err := os.Create(filename)
 		errorCheck(err)
 
 		str := strconv.Itoa(total) //Konverterer variabel total med type int til string.

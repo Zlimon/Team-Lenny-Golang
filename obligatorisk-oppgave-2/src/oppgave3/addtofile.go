@@ -11,7 +11,12 @@ import (
 )
 
 func main() {
-	fil2, err := ioutil.ReadFile("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt")
+	filename := os.Args[1]
+	addToFile(filename)
+}
+
+func addToFile(filename string) {
+	fil2, err := ioutil.ReadFile(filename)
 	errorCheck(err)
 
 	str := string(fil2) //Konverterer filen til en string.
@@ -23,9 +28,9 @@ func main() {
 	Hvis ikke blir det spurt om å skrive inn 2 tall som skrives til file.txt.
 	 */
 	if strings.Contains(str, completeCheck) {
-		fmt.Println("Summen av tallene er:", str)
+		fmt.Println("The answer is:", str)
 	} else {
-		fil, err := os.Create("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt")
+		fil, err := os.Create(filename)
 		errorCheck(err)
 
 		totalReader := bufio.NewScanner(fil)
@@ -37,13 +42,12 @@ func main() {
 
 		fmt.Print("Enter number 1: ")
 		number1, err := reader.ReadString('\n')
-		errorCheck(err)
 		fmt.Print("Enter number 2: ")
 		number2, err := reader.ReadString('\n')
-		errorCheck(err)
 
-		//number1int := ("Number_1:" + number1)
-
+		/**
+		Sjekker om variablene inneholder uhyggelige tegn som ødelegger for sumfromfile.go
+		 */
 		if number1 == "\n" {
 			fmt.Println("You have to write something in number 1!")
 		} else if strings.Contains(number1, " ") {
@@ -63,7 +67,11 @@ func main() {
 }
 
 func errorCheck(err error) {
-	if err != nil {
-		panic(err)
-	}
+	c := make(chan os.Signal, 0x2)
+	signal.Notify(c, syscall.SIGINT)
+	go func() {
+		<-c
+		fmt.Printf("You cancelled the program! ")
+		os.Exit(1)
+	}()
 }

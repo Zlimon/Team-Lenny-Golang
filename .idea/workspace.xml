@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9dcf67f7-0c67-4eb7-bae7-357b9b074102" name="Default" comment="" />
+    <list default="true" id="9dcf67f7-0c67-4eb7-bae7-357b9b074102" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.exe" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount2.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount3.go" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addtofile.go" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addtofile.go" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addup.go" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addup.go" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/file.txt" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/file.txt" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/sumfromfile.go" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/sumfromfile.go" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,6 +25,20 @@
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount3.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount2.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addup.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addtofile.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/sumfromfile.go" />
+        <option value="$USER_HOME$/Downloads/filecount_old.go" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -43,6 +67,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -86,8 +112,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -106,14 +130,37 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Build.go build filecount2.go">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
     </configuration>
+    <configuration name="go build addup.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addup.go" />
+    </configuration>
+    <configuration name="go build filecount2.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount2.go" />
+    </configuration>
+    <configuration name="go build filecount3.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
+      <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount3.go" />
+    </configuration>
     <configuration name="go build filecount.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go" />
@@ -124,9 +171,18 @@
       <framework value="gotest" />
       <kind value="DIRECTORY" />
     </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Go Build.go build filecount.go" />
+      <item index="1" class="java.lang.String" itemvalue="Go Build.go build filecount3.go" />
+      <item index="2" class="java.lang.String" itemvalue="Go Build.go build filecount2.go" />
+      <item index="3" class="java.lang.String" itemvalue="Go Build.go build addup.go" />
+    </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Go Build.go build filecount.go" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Go Build.go build filecount2.go" />
+        <item index="1" class="java.lang.String" itemvalue="Go Build.go build addup.go" />
+        <item index="2" class="java.lang.String" itemvalue="Go Build.go build filecount.go" />
+        <item index="3" class="java.lang.String" itemvalue="Go Build.go build filecount3.go" />
       </list>
     </recent_temporary>
   </component>
@@ -141,7 +197,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16526397" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -162,11 +218,69 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="3" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addtofile.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/sumfromfile.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="19" lean-forward="false" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addup.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount3.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount2.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="28" column="7" lean-forward="false" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/text.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -174,10 +288,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go">
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+        <state relative-caret-position="34">
+          <caret line="2" column="9" lean-forward="true" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/file.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/filecount_old.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="955">
+          <caret line="114" column="1" lean-forward="false" selection-start-line="114" selection-start-column="1" selection-end-line="114" selection-end-column="1" />
           <folding />
         </state>
       </provider>

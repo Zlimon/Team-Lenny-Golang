@@ -2,9 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 var number1 int
@@ -12,37 +9,26 @@ var number2 int
 var total int
 
 func main() {
-	ch := make(chan int) //Oppretter kanaler med type int.
+	ch := make(chan int) // Oppretter kanaler med type int.
 
-	/**
-	Leser input fra terminal, og putter dem inn i 2 kanaler.
-	 */
+	// Leser input fra terminal, og putter dem inn i 2 kanaler.
 	fmt.Print("Enter number 1: ")
 	fmt.Scan(&number1)
 	fmt.Print("Enter number 2: ")
 	fmt.Scan(&number2)
+
+	// Funksjon A.
 	go func() {
 		ch <- number1
 		ch <- number2
 	}()
 
-	//fmt.Println("Number 1:", <-ch,"\nNumber 2:", <-ch) //Printer ut de 2 første kanalene.
-
-	/**
-	Adderer tallene, og putter dem i 1 kanal.
-	 */
+	// Adderer tallene, og putter dem i 1 kanal.
 	total = <-ch + <-ch
+	// Funksjon B.
 	go func() {
 		ch <- total
 	}()
 
-	fmt.Println("Total =", <-ch) //Printer ut summen/siste kanalen.
-
-	c := make(chan os.Signal, 0x2)
-	signal.Notify(c, syscall.SIGINT)
-	go func() {
-		<-c
-		fmt.Printf("You cancelled the program! ")
-		os.Exit(1)
-	}()
+	fmt.Println("Total =", <-ch) // Printer ut summen/siste kanalen.
 }

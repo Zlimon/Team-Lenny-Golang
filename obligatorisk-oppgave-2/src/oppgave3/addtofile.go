@@ -18,12 +18,10 @@ func main() {
 	fmt.Print("Enter number 2: ")
 	number2, err := reader.ReadString('\n')
 
-	number1int := ("Number_1:" + number1)
+	//number1int := ("Number_1:" + number1)
 
-	writer.WriteString(number1int)
+	writer.WriteString(number1)
 	writer.WriteString(number2)
-
-	fmt.Println()
 
 	writer.Flush()
 }

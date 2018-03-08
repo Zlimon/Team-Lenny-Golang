@@ -2,29 +2,38 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"strings"
+	"bufio"
+	"os"
 	"strconv"
 )
 
-var i int
-
 func main() {
-	fil, err := ioutil.ReadFile("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt")
+	fil, err := os.Open("C:/Users/simon/go/src/Go/Team-Lenny/Team-Lenny/obligatorisk-oppgave-2/src/oppgave3/file.txt")
 	errorCheck(err)
 
-	str := string(fil) //Konverterer filen til en string.
+	//str := string(fil) //Konverterer filen til en string.
 
-	if strings.Contains(str, "5") {
-		fmt.Println("Found a number! \n", str)
-	} else {
-		fmt.Println("Found nothing")
+	reader := bufio.NewScanner(fil)
+	reader.Split(bufio.ScanLines)
+
+	counter := 0
+	var1 := 0
+	var2 := 0
+	total := 0
+	for reader.Scan() {
+		for counter < 1 {
+			lineOne, err := strconv.Atoi(reader.Text()) //Konverterer linje 1 til int
+			errorCheck(err)
+			var1 = lineOne
+			counter++
+		}
+		lineTwo, err := strconv.Atoi(reader.Text()) //Konverterer linje 2 til int
+		errorCheck(err)
+		var2 = lineTwo
+		total = var1 + var2
 	}
+	fmt.Println("Summen:", var1, "+", var2, "=", total)
 }
-
-
-//fmt.Sscanf(str, "nr1:", &i)
-//fmt.Println(i) // Outputs 123
 
 func errorCheck(err error) {
 	if err != nil {

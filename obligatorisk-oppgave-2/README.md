@@ -3,9 +3,9 @@
 <p>Deltagere:</p>
 <ul>
   <li><b>Simon Konglevoll Lønnestad</b></li>
-  <li><b>Petter Sølvsberg Johannessen</b></li>
+  <li><b>Petter Sølvsberg Johannessen</b></li>
   <li><b>Magnus Husveg</b></li>
-  <li><b>Kristian Jul-Larsen</b></li>
+  <li><b>Kristian Jul-Larsen</b></li>
 </ul>
 <hr>
 

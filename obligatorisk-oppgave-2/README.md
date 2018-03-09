@@ -4,6 +4,7 @@
 <ul>
   <li><b>Simon Konglevoll Lønnestad</b></li>
   <li><b>Petter Sølvsberg Johannessen</b></li>
+  <li><b>Magnus Husveg</b></li>
 
 </ul>
 <hr>

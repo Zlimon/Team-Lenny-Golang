@@ -2,7 +2,7 @@
 <p>Gruppe: <b>Team Lenny</b></p>
 <p>Deltagere:</p>
 <li>
-  <ul><b>Simon</b></ul>
+  <ul><b>Simon Konglevoll Lønnestad</b></ul>
 </li>
 <hr>
 

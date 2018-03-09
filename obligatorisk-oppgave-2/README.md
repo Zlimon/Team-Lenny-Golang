@@ -6,6 +6,7 @@
   <li><b>Petter Sølvsberg Johannessen</b></li>
   <li><b>Magnus Husveg</b></li>
   <li><b>Kristian Jul-Larsen</b></li>
+  <li><b>Marius Evensen</b></li>
 </ul>
 <hr>
 

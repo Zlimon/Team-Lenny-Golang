@@ -12,8 +12,7 @@
 <h2>Oppgave 1</h2>
 <p><i> - Bruk filen fileinfo.txt i programmet</i></p>
 <p><a href="https://github.com/Zlimon/Team-Lenny/tree/Obligatorisk-oppgave-2/obligatorisk-oppgave-2/src/oppgave1">Lenke til oppgave 1</a></p>
-<p>a) <a href="https://github.com/Zlimon/Team-Lenny/blob/Obligatorisk-oppgave-2/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go">fileinfo.go</a></p>
-<p>b)</p>
+<p><a href="https://github.com/Zlimon/Team-Lenny/blob/Obligatorisk-oppgave-2/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go">fileinfo.go</a></p>
 
 <h2>Oppgave 2</h2>
 <p><i> - Bruk filen text.txt i programmet</i></p>

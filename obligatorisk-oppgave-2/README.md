@@ -3,6 +3,8 @@
 <p>Deltagere:</p>
 <ul>
   <li><b>Simon Konglevoll Lønnestad</b></li>
+  <li><b>Petter Sølvsberg Johannessen</b></li>
+
 </ul>
 <hr>
 

@@ -1,9 +1,11 @@
 <h1>IS-105, Obligatorisk oppgave 2</h1>
 <p>Gruppe: <b>Team Lenny</b></p>
 <p>Deltagere:</p>
-<li>
-  <ul><b>Simon Konglevoll Lønnestad</b></ul>
-</li>
+<ul>
+  <li><b>Simon Konglevoll Lønnestad</b></li>
+  <li><b>Petter Sølvsberg Johannessen</b></li>
+
+</ul>
 <hr>
 
 <h2>Oppgave 1</h2>

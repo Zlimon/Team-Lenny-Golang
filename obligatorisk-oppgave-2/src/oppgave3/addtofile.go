@@ -17,10 +17,7 @@ func main() {
 
 func checkFile(filename string) {
 	file, err := ioutil.ReadFile(filename)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return
-	}
+	errorCheck(err)
 
 	str := string(file) // Konverterer filen til en string.
 
@@ -39,11 +36,7 @@ func checkFile(filename string) {
 
 func addToFile(filename string) {
 	file, err := os.Create(filename)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return
-	}
-	defer file.Close()
+	errorCheck(err)
 
 	reader := bufio.NewReader(os.Stdin)
 

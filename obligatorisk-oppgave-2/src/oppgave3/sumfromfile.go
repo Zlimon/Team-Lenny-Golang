@@ -7,6 +7,8 @@ import (
 	"strconv"
 	"io/ioutil"
 	"strings"
+	"os/signal"
+	"syscall"
 )
 
 func main() {
@@ -16,7 +18,10 @@ func main() {
 
 func checkFile(filename string) {
 	file, err := ioutil.ReadFile(filename)
-	errorCheck(err)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return
+	}
 
 	str := string(file) // Konverterer filen til en string.
 
@@ -51,12 +56,12 @@ func sumFromFile(filename string) {
 	for reader.Scan() {
 		for counter < 1 {
 			lineOne, err := strconv.Atoi(reader.Text()) // Konverterer linje 1 til int.
-			errorCheck(err)
+			sigINT(err)
 			number1 = lineOne
 			counter++
 		}
 		lineTwo, err := strconv.Atoi(reader.Text()) // Konverterer linje 2 til int.
-		errorCheck(err)
+		sigINT(err)
 		number2 = lineTwo
 		total = number1 + number2
 	}
@@ -72,9 +77,20 @@ func sumFromFile(filename string) {
 	fmt.Println("Calculation complete!")
 }
 
-
+// Feilhåndtering
 func errorCheck(err error) {
 	if err != nil {
-		panic(err)
+		fmt.Fprintln(os.Stderr, err)
+		return
 	}
+}
+
+func sigINT(err error) {
+	c := make(chan os.Signal, 0x2)
+	signal.Notify(c, syscall.SIGINT)
+	go func() {
+		<-c
+		fmt.Printf("\nYou canceled the program!\n")
+		os.Exit(1)
+	}()
 }

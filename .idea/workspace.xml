@@ -13,11 +13,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="fileinfo.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave1/main.go">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="fileinfo.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filecount.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="14" selection-start-line="14" selection-end-line="17" selection-end-column="5" />
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -73,7 +87,45 @@
             <path>
               <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
               <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
+              <item name="obligatorisk-oppgave-2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
+              <item name="obligatorisk-oppgave-2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
+              <item name="obligatorisk-oppgave-2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="oppgave1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
+              <item name="obligatorisk-oppgave-2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="oppgave2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
               <item name="obligatorisk-oppgave-3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
+              <item name="obligatorisk-oppgave-3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
+              <item name="obligatorisk-oppgave-3" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="oppgave1" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -88,6 +140,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -101,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build addup.go">
+  <component name="RunManager" selected="Go Build.go build fileinfo.go">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="Team-Lenny" />
       <working_directory value="$PROJECT_DIR$/" />
@@ -122,19 +175,26 @@
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount2.go" />
     </configuration>
-    <configuration name="go build filecount3.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
-      <module name="Team-Lenny" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount3.go" />
-    </configuration>
     <configuration name="go build filecount.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
       <module name="Team-Lenny" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go" />
+    </configuration>
+    <configuration name="go build fileinfo.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go" />
+    </configuration>
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave1/main.go" />
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="Team-Lenny" />
@@ -145,29 +205,31 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build filecount.go" />
-      <item itemvalue="Go Build.go build filecount3.go" />
       <item itemvalue="Go Build.go build filecount2.go" />
       <item itemvalue="Go Build.go build addup.go" />
+      <item itemvalue="Go Build.go build main.go" />
+      <item itemvalue="Go Build.go build fileinfo.go" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build fileinfo.go" />
+        <item itemvalue="Go Build.go build main.go" />
         <item itemvalue="Go Build.go build addup.go" />
         <item itemvalue="Go Build.go build filecount2.go" />
         <item itemvalue="Go Build.go build filecount.go" />
-        <item itemvalue="Go Build.go build filecount3.go" />
       </list>
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13469985" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13469985" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" visible="true" weight="0.17795275" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.24251969" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.16526397" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36062992" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -238,13 +300,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Downloads/filecount_old.go" />
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave3/addup.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="523">
@@ -266,10 +321,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave1/main.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave1/fileinfo.go">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-2/src/oppgave2/filecount.go">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="14" selection-start-line="14" selection-end-line="17" selection-end-column="5" />
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>

@@ -11,8 +11,16 @@ import (
 var (
 	connHost = "127.0.0.1"
 	connPort = "17"
-	connType = "tcp"
+	connTCP = "tcp"
+	connUDP = "udp"
 )
+
+func CheckError(err error) {
+	if err  != nil {
+		fmt.Println("Error: " , err)
+		os.Exit(0)
+	}
+}
 
 var yesAnswer = regexp.MustCompile("y|Y|yes|Yes|YES")
 var noAnswer = regexp.MustCompile("n|N|no|No|NO")
@@ -23,17 +31,24 @@ func main() {
 	answer, _ := reader.ReadString('\n')
 
 	if yesAnswer.MatchString(answer) {
-		// Connect to the server
-		conn, err := net.Dial(connType, connHost+":"+connPort)
-		if err != nil {
-			fmt.Println("Error dialing:", err.Error())
-			os.Exit(1)
-		}
+		tcpConn, err := net.Dial(connTCP, connHost+":"+connPort)
+		CheckError(err)
+		udpConn, err := net.Dial(connUDP, connHost+":"+connPort)
+		CheckError(err)
 
-		fmt.Fprintf(conn, answer + "\n")
-		quote, _ := bufio.NewReader(conn).ReadString('\n')
+		fmt.Fprintf(tcpConn, answer + "\n")
+		quote, err := bufio.NewReader(tcpConn).ReadString('\n')
+		CheckError(err)
 		fmt.Print("Quote from server:\n"+quote)
-		conn.Close()
+		tcpConn.Close()
+
+		for {
+			fmt.Print("Text to send: ")
+			text, _ := reader.ReadString('\n')
+			fmt.Fprintf(udpConn, text + "\n")
+			message, _ := bufio.NewReader(udpConn).ReadString('\n')
+			fmt.Print("Message from server: "+message)
+		}
 	} else if noAnswer.MatchString(answer) {
 		fmt.Println("Neivel!")
 	} else {

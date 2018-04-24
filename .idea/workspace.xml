@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9dcf67f7-0c67-4eb7-bae7-357b9b074102" name="Default" comment="">
-<<<<<<< HEAD
-      <change afterPath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp_client.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/api2.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go" beforeDir="false" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/udp_client.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/udp/client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/udp/server.go" beforeDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
->>>>>>> Obligatorisk-oppgave-3
+      <change beforePath="$PROJECT_DIR$/obligatorisk-oppgave-3/xkcdapi.go" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,44 +16,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-<<<<<<< HEAD
-    <leaf>
-      <file leaf-file-name="oppgave2.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="69" column="1" lean-forward="true" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
-              <folding>
-                <element signature="e#14#86#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-=======
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="xkcdapi.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/xkcdapi.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
->>>>>>> Obligatorisk-oppgave-3
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Go File" />
         <option value="HTML File" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -103,8 +65,12 @@
         <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/view.html" />
         <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/main.go" />
         <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/pokemon.html" />
-        <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index2.html" />
         <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/xkcdapi.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/xkcdapi.go" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html" />
+        <option value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/api2.go" />
       </list>
     </option>
   </component>
@@ -117,17 +83,17 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,14 +104,6 @@
             <path>
               <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
               <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
-              <item name="obligatorisk-oppgave-3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
-=======
->>>>>>> Obligatorisk-oppgave-3
               <item name="obligatorisk-oppgave-3" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -153,17 +111,6 @@
               <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
               <item name="obligatorisk-oppgave-3" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
-              <item name="oppgave2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Team-Lenny" type="462c0819:PsiDirectoryNode" />
-              <item name="obligatorisk-oppgave-3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="oppgave3" type="462c0819:PsiDirectoryNode" />
-            </path>
-=======
             </path>
             <path>
               <item name="Team-Lenny" type="b2602c69:ProjectViewProjectNode" />
@@ -172,11 +119,11 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="oppgave2" type="462c0819:PsiDirectoryNode" />
             </path>
->>>>>>> Obligatorisk-oppgave-3
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -210,75 +157,47 @@
       </list>
     </option>
   </component>
-<<<<<<< HEAD
-  <component name="RunManager" selected="Go Build.go build main.go (1)">
-=======
-  <component name="RunManager" selected="Go Build.go build xkcdapi.go">
->>>>>>> Obligatorisk-oppgave-3
+  <component name="RunManager" selected="Go Build.go build oppgave2.go">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="Team-Lenny" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
     </configuration>
-<<<<<<< HEAD
+    <configuration name="go build api2.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="Team-Lenny" />
+      <working_directory value="$PROJECT_DIR$/" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/api2.go" />
+    </configuration>
     <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-=======
-    <configuration name="go build client.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
->>>>>>> Obligatorisk-oppgave-3
       <module name="Team-Lenny" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/main.go" />
     </configuration>
-<<<<<<< HEAD
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-=======
-    <configuration name="go build client.go (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
->>>>>>> Obligatorisk-oppgave-3
+    <configuration name="go build oppgave2.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Team-Lenny" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave1/main.go" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go" />
     </configuration>
-<<<<<<< HEAD
-    <configuration name="go build tcp_client.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-=======
-    <configuration name="go build server.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
->>>>>>> Obligatorisk-oppgave-3
+    <configuration name="go build xkcdapi.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="Team-Lenny" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp/tcp_client.go" />
+      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/xkcdapi.go" />
     </configuration>
-<<<<<<< HEAD
-    <configuration name="go build test.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-=======
-    <configuration name="go build server.go (2)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true">
->>>>>>> Obligatorisk-oppgave-3
-      <module name="Team-Lenny" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/test.go" />
-    </configuration>
-<<<<<<< HEAD
-    <configuration name="go build webserver.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-=======
     <configuration name="go build xkcdapi.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
->>>>>>> Obligatorisk-oppgave-3
       <module name="Team-Lenny" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-<<<<<<< HEAD
-      <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/webserver.go" />
-=======
       <filePath value="$PROJECT_DIR$/obligatorisk-oppgave-3/xkcdapi.go" />
->>>>>>> Obligatorisk-oppgave-3
     </configuration>
     <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
       <module name="Team-Lenny" />
@@ -288,62 +207,32 @@
       <kind value="DIRECTORY" />
     </configuration>
     <list>
-<<<<<<< HEAD
-      <item itemvalue="Go Build.go build tcp_client.go" />
-      <item itemvalue="Go Build.go build test.go" />
-      <item itemvalue="Go Build.go build webserver.go" />
-      <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Build.go build main.go (1)" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build main.go (1)" />
-        <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.go build test.go" />
-        <item itemvalue="Go Build.go build webserver.go" />
-        <item itemvalue="Go Build.go build tcp_client.go" />
-=======
-      <item itemvalue="Go Build.go build server.go (1)" />
-      <item itemvalue="Go Build.go build client.go (1)" />
-      <item itemvalue="Go Build.go build server.go (2)" />
-      <item itemvalue="Go Build.go build client.go (2)" />
       <item itemvalue="Go Build.go build xkcdapi.go" />
+      <item itemvalue="Go Build.go build xkcdapi.go (1)" />
+      <item itemvalue="Go Build.go build oppgave2.go" />
+      <item itemvalue="Go Build.go build api2.go" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build oppgave2.go" />
+        <item itemvalue="Go Build.go build api2.go" />
+        <item itemvalue="Go Build.go build xkcdapi.go (1)" />
         <item itemvalue="Go Build.go build xkcdapi.go" />
-        <item itemvalue="Go Build.go build client.go (1)" />
-        <item itemvalue="Go Build.go build server.go (1)" />
-        <item itemvalue="Go Build.go build server.go (2)" />
-        <item itemvalue="Go Build.go build client.go (2)" />
->>>>>>> Obligatorisk-oppgave-3
+        <item itemvalue="Go Build.go build main.go (1)" />
       </list>
     </recent_temporary>
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22913617" />
-=======
-    <frame x="953" y="0" width="974" height="1047" extended-state="1" />
-    <editor active="true" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3256785" />
->>>>>>> Obligatorisk-oppgave-3
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22913617" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50073206" side_tool="true" weight="0.28976378" />
       <window_info anchor="right" id="Database" order="3" />
-<<<<<<< HEAD
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49926794" visible="true" weight="0.22992127" />
-=======
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49926794" visible="true" weight="0.22814499" />
->>>>>>> Obligatorisk-oppgave-3
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49926794" weight="0.4488189" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -369,10 +258,27 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/xkcdapi.go">
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state relative-caret-position="1037">
+          <caret line="69" column="1" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/api2.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="62" column="1" lean-forward="true" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
+          <folding>
+            <element signature="e#14#103#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -471,7 +377,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/oppgave3_2.go" />
-<<<<<<< HEAD
     <entry file="file://$USER_HOME$/Downloads/tcp_client.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -498,33 +403,8 @@
         </state>
       </provider>
     </entry>
-=======
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave1/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/tcp_client.go" />
-    <entry file="file://$USER_HOME$/Downloads/tcp_server.go" />
-    <entry file="file://$USER_HOME$/Downloads/udp_server.go" />
-    <entry file="file://$USER_HOME$/Downloads/udp_client.go" />
->>>>>>> Obligatorisk-oppgave-3
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/udp/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" selection-start-line="10" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/udp/client.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/udp/server.go" />
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/udp/client.go" />
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-1/Oppgave3_løkke.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -532,23 +412,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp/udp_server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp/client.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="55" column="1" lean-forward="true" selection-start-line="55" selection-start-column="1" selection-end-line="55" selection-end-column="1" />
-          <folding>
-            <element signature="e#14#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp/udp_server.go" />
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/tcp/client.go" />
     <entry file="file://$USER_HOME$/Downloads/udp_client (1).go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -556,26 +421,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/webserver.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="19" />
-          <folding>
-            <element signature="e#14#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/test.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="37" column="21" lean-forward="true" selection-end-line="54" selection-end-column="1" />
-          <folding>
-            <element signature="e#14#86#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/webserver.go" />
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/test.go" />
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave1/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -583,26 +430,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="53" selection-end-column="1" />
-          <folding>
-            <element signature="e#14#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/server.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/main.go" />
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/view.html" />
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave3/server.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1156">
@@ -624,34 +453,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html">
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index2.html" />
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/xkcdapi.go" />
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/api2.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="69" column="1" lean-forward="true" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
+        <state relative-caret-position="1054">
+          <caret line="62" column="1" selection-start-line="62" selection-start-column="1" selection-end-line="62" selection-end-column="1" />
           <folding>
-            <element signature="e#14#86#0" expanded="true" />
+            <element signature="e#14#103#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/oppgave2.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+        <state relative-caret-position="273">
+          <caret line="69" column="1" lean-forward="true" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/xkcdapi.go">
+    <entry file="file://$PROJECT_DIR$/obligatorisk-oppgave-3/src/oppgave2/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        <state relative-caret-position="255">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
         </state>
       </provider>
     </entry>

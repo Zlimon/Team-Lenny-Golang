@@ -24,9 +24,9 @@ type PokemonSpecies struct {
 	Name string `json:"name"`
 }
 
-type TodoPageData struct {
-	PageTitle string
-	PokemonListe     string
+type PageData struct {
+	PageTitle		string
+	PokemonListe	string
 }
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
 	tmpl := template.Must(template.ParseFiles("index.html"))
 
 	http.HandleFunc("/1/", func(w http.ResponseWriter, r *http.Request) {
-		data := TodoPageData {
+		data := PageData {
 			PageTitle: "Pokemon Kanto Region",
 			PokemonListe: pokeListe,
 		}

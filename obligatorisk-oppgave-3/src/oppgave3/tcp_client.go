@@ -1,4 +1,4 @@
-package main
+package oppgave3
 
 import (
 	"net"
@@ -33,22 +33,11 @@ func main() {
 	if yesAnswer.MatchString(answer) {
 		tcpConn, err := net.Dial(connTCP, connHost+":"+connPort)
 		CheckError(err)
-		udpConn, err := net.Dial(connUDP, connHost+":"+connPort)
-		CheckError(err)
 
 		fmt.Fprintf(tcpConn, answer + "\n")
 		quote, err := bufio.NewReader(tcpConn).ReadString('\n')
 		CheckError(err)
 		fmt.Print("Quote from server:\n"+quote)
-		tcpConn.Close()
-
-		for {
-			fmt.Print("Text to send: ")
-			text, _ := reader.ReadString('\n')
-			fmt.Fprintf(udpConn, text + "\n")
-			message, _ := bufio.NewReader(udpConn).ReadString('\n')
-			fmt.Print("Message from server: "+message)
-		}
 	} else if noAnswer.MatchString(answer) {
 		fmt.Println("Neivel!")
 	} else {

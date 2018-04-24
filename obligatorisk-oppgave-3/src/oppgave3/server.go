@@ -1,4 +1,4 @@
-package main
+package oppgave3
 
 import (
 	"net"
@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 	"math/rand"
+	"time"
 )
 
 var (
@@ -29,40 +30,47 @@ func CheckError(err error) {
 }
 
 func main() {
-	tcpConn, err := net.Listen(connTCP, connHost+":"+connPort)
-	udpAddr,err := net.ResolveUDPAddr(connUDP,":"+connPort)
-	CheckError(err)
-
-	udpConn, err := net.ListenUDP(connUDP, udpAddr)
+	tcpConn, err := net.Listen(connTCP, connHost + ":" + connPort)
 	CheckError(err)
 
 	defer tcpConn.Close()
-	defer udpConn.Close()
-	fmt.Println("Listening on ",connHost,":",connPort)
 
-	buf := make([]byte, 1024)
+	fmt.Println("Listening on", connHost, ":", connPort, "with", connTCP)
 
 	for {
 		tcpConn, err := tcpConn.Accept()
-		if err != nil {
-			fmt.Println("Error accepting: ", err.Error())
-			os.Exit(1)
-		} else {
+		CheckError(err)
+
+		go func(net.Conn) {
+			rand.Seed(time.Now().UnixNano())
 			random := rand.Intn(3)
 
-			fmt.Println("Recieved a connection!")
+			fmt.Println("Recieved a connection from")
 			fmt.Println("Returning a daily quote...")
 			tcpConn.Write([]byte(quotes[random] + "\n"))
 			fmt.Println("Connection closed.")
-		}
+		}(tcpConn)
+
+		udpAddr, err := net.ResolveUDPAddr(connUDP, ":"+connPort)
+		CheckError(err)
+
+		udpConn, err := net.ListenUDP(connUDP, udpAddr)
+		CheckError(err)
+
+		defer udpConn.Close()
+
+		fmt.Println("Listening on", connHost, ":", connPort, "with", connUDP)
+
+		buf := make([]byte, 1024)
 
 		for {
-			n,addr,err := udpConn.ReadFromUDP(buf)
+			n, addr, err := udpConn.ReadFromUDP(buf)
 			CheckError(err)
-			fmt.Println("Received",string(buf[0:n]), "from",addr)
 
-			newmessage := strings.ToUpper(string(buf[0:n]))
-			udpConn.WriteToUDP([]byte(newmessage + "\n"),addr)
+			fmt.Println("Received", string(buf[0:n]), "from", addr)
+
+			newMessage := strings.ToUpper(string(buf[0:n]))
+			udpConn.WriteToUDP([]byte(newMessage+"\n"), addr)
 		}
 	}
 }

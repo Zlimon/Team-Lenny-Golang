@@ -25,8 +25,8 @@ type PokemonSpecies struct {
 }
 
 type PageData struct {
-	PageTitle		string
-	PokemonListe	string
+	PageTitle	string
+	PokemonList	[]string
 }
 
 func main() {
@@ -47,21 +47,20 @@ func main() {
 	fmt.Println(responseObject.Name)
 	fmt.Println(len(responseObject.Pokemon))
 
-	var pokeListe string
-
+	var pokemonList = make([]string, 0)
 	for i := 0; i < len(responseObject.Pokemon); i++ {
-		pokeListe = responseObject.Pokemon[i].Species.Name
 		fmt.Println(responseObject.Pokemon[i].Species.Name)
+		pokemonList = append(pokemonList, responseObject.Pokemon[i].Species.Name)
 	}
 
-	fmt.Println(pokeListe)
+	fmt.Println("File List: ", pokemonList)
 
-	tmpl := template.Must(template.ParseFiles("index.html"))
+	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/index.html"))
 
-	http.HandleFunc("/1/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		data := PageData {
 			PageTitle: "Pokemon Kanto Region",
-			PokemonListe: pokeListe,
+			PokemonList: pokemonList,
 		}
 		tmpl.Execute(w, data)
 	})

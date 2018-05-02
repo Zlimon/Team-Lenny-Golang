@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: "Comic Sans MS";
+            background-image: url("http://freehdwallpapers.website/wp-content/uploads/2016/07/132ditto1920x1200.jpg");
+            background-color: #C47BE6;
+            background-position: fixed;
+            background-repeat: no-repeat;
+        }
+        h1 {
+            color: blue;
+        }
+        p {
+            font-size: 15px;
+            color: white;
+        }
+        .left {
+            border-radius: 10px;
+            margin: auto;
+            text-align: center;
+            float: left;
+            width: calc(50% - 5px);
+        }
+        .right {
+            border-radius: 10px;
+            margin: auto;
+            text-align: center;
+            float: right;
+            width: calc(50% - 5px);
+        }
+        table.center {
+            margin-left:auto;
+            margin-right:auto;
+        }
+        .box {
+            border-radius: 10px;
+            background-color: #cf94eb;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>{{.PageTitle}}</title>
+</head>
+
+<body>
+    <div class="left">
+        <div class="box">
+            <h1>{{.PageTitle}}</h1>
+        </div>
+        <div class="box">
+            <p>{{.PokemonList}}</p>
+            <h1>Tilsammen {{.PokemonSum}}</h1>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="box">
+            <h1>Guess who's that Pokemon!</h1>
+        </div>
+        <div class="box">
+            <table class="center">
+                <tr>
+                    <td><object data="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{.RandomPokemon}}.png" type="image/png"></object></td>
+                    <td><object data="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{.RandomPokemon}}.png" type="image/png"></object></td>
+                    <td><object data="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{.RandomPokemon}}.png" type="image/png"></object></td>
+                </tr>
+            </table>
+            <form action="" method="post">
+                <input type="text" name="">
+                <input type="submit" value="Submit">
+            </form>
+            <h1>{{.RandomPokemonID}} - {{.RandomPokemonName}}</h1>
+        </div>
+    </div>
+</body>
+</html>

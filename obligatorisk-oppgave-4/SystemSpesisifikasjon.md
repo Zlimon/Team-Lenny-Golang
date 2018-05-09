@@ -1,22 +1,6 @@
-<b>Purpose</b>
+<p align="center"><b>SYSTEMPESIFIKASJON</b></p>
 
-
-<b>Scope</b>
-
-
-<b>System Overview</b>
-
-
-<b>References</b>
-
-
-<b>Definitions</b>
-
-
-<b>Use Cases</b>
-
-
-<b>Functional requirements</b>
-
-
-<b>Non-functional requirements</b>
+Applikasjonen søker å gjøre det enkelt for brukeren å søke opp pokèmon og finne diverse informasjon om dem.
+Som f.eks type, abilities, høyde, vekt og et bilde av pokèmonen.
+Dette vil kunne være et nyttig verktøy for brukeren hvis for eksempel han/hun kommer i en krangel med en venn
+over hvor mye en Electrobuzz veier. De kan da enkelt søke opp Electrobuzz i vår webapplikasjon og få opp relevant informasjon.

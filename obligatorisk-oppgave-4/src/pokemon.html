@@ -4,40 +4,63 @@
 <head>
     <style>
         body {
-            font-family: "Comic Sans MS";
-            background-image: url("http://freehdwallpapers.website/wp-content/uploads/2016/07/132ditto1920x1200.jpg");
-            background-color: #C47BE6;
-            background-position: fixed;
+            @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+            font-family: 'Ubuntu', sans-serif;
+            background-image: url({{.PageBackground}});
+            background-size: cover;
+            background-color: #3564AE;
             background-repeat: no-repeat;
         }
-        h1 {
-            color: blue;
+        h1, h2 {
+            text-align: center;
+            color: #ffcb05;
         }
         p {
             font-size: 15px;
-            color: white;
+            color: #ffd633;
         }
-        .left {
+        .leftContent {
             border-radius: 10px;
-            margin: auto;
-            text-align: center;
             float: left;
             width: calc(50% - 5px);
         }
-        .right {
+        .rightContent {
             border-radius: 10px;
-            margin: auto;
-            text-align: center;
             float: right;
             width: calc(50% - 5px);
         }
-        table.center {
-            margin-left:auto;
-            margin-right:auto;
+        .center {
+            margin-left: auto;
+            margin-right: auto;
         }
-        .box {
+        .contentBox {
             border-radius: 10px;
-            background-color: #cf94eb;
+            background-color: #4f7ec9;
+        }
+        .content {
+            padding: 10px;
+        }
+        .button {
+            color: white;
+            padding-left: 40px;
+            padding-right: 40px;
+            background-color: #769bd5;
+        }
+        .typeColor1 {
+            background-color: #{{.PokemonTypesColor}};;
+        }
+        .typeColor2 {
+            background-color: #{{.PokemonSecondTypesColor}};;
+        }
+        .infoBox {
+            margin: auto;
+            padding: 10px;
+            width: 50%;
+            border-radius: 10px;
+            background-color: #769bd5;
+        }
+        .highlight {
+            color: #ffe066;
         }
     </style>
     <meta charset="UTF-8">
@@ -45,33 +68,66 @@
 </head>
 
 <body>
-    <div class="left">
-        <div class="box">
+    <div class="leftContent">
+        <div class="contentBox">
             <h1>{{.PageTitle}}</h1>
         </div>
-        <div class="box">
-            <p>{{.PokemonList}}</p>
-            <h1>Tilsammen {{.PokemonSum}}</h1>
+        <table class="center" style="border-spacing: 40px 0;">
+            <tr>
+                <td class="box button"><h2><a href="/">Hjem</a></h2></td>
+                <td class="box button"><h2><a href="/kanto">Kanto</a></h2></td>
+                <td class="box button"><h2><a href="">Hoenn</a></h2></td>
+                <td class="box button"><h2><a href="">Johnto</a></h2></td>
+            </tr>
+        </table>
+
+        <div class="contentBox center">
+            <div class="content">
+                {{with $1:=.PokemonSearch}}
+                    <h1>Søk etter Pokemon med navn eller ID:</h1>
+                <form action="/search" method="post">
+                {{range $1}}
+                <input type="text" name="{{.PokemonNameSearch}}" placeholder="For eksempel: Pikachu eller 25">
+                {{end}}
+                    <input type="submit" value="Søk">
+                </form>
+                {{end}}
+
+                <p>{{.SearchError}}</p>
+            </div>
         </div>
     </div>
 
-    <div class="right">
-        <div class="box">
-            <h1>Guess who's that Pokemon!</h1>
-        </div>
-        <div class="box">
+    <div class="rightContent">
+        <div class="contentBox typeColor">
+            <h1>{{.PokemonName}}</h1>
             <table class="center">
                 <tr>
-                    <td><object data="https://assets.pokemon.com/assets/cms2/img/pokedex/full/00{{.RandomPokemon}}.png" type="image/png"></object></td>
-                    <td><object data="https://assets.pokemon.com/assets/cms2/img/pokedex/full/0{{.RandomPokemon}}.png" type="image/png"></object></td>
-                    <td><object data="https://assets.pokemon.com/assets/cms2/img/pokedex/full/{{.RandomPokemon}}.png" type="image/png"></object></td>
+                    <td><img src="{{.PokemonImage}}" /></td>
                 </tr>
             </table>
-            <form action="" method="post">
-                <input type="text" name="">
-                <input type="submit" value="Submit">
-            </form>
-            <h1>{{.RandomPokemonID}} - {{.RandomPokemonName}}</h1>
+            <div class="content">
+                <div class="infoBox">
+                    <table class="center">
+                        <tr>
+                            <td class="leftContent">ID: <span class="highlight">{{.PokemonID}}</span></td>
+                            <td class="rightContent">Name: <span class="highlight">{{.PokemonName}}</span></td>
+                        </tr>
+                        <tr>
+                            <td class="leftContent">Height: <span class="highlight">{{.PokemonHeight}}</span> m</td>
+                            <td class="rightContent">Weight: <span class="highlight">{{.PokemonWeight}}</span> kg</td>
+                        </tr>
+                        <tr>
+                            <td class="leftContent">Types:</td>
+                            <td class="rightContent">Abilities:</td>
+                        </tr>
+                        <tr>
+                            <td class="leftContent"><span class="typeColor1">{{.PokemonType1}}</span> <span class="typeColor2">{{.PokemonType2}}</span></td>
+                            <td class="rightContent">{{.PokemonAbilities}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </body>

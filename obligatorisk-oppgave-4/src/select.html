@@ -19,8 +19,9 @@
     <p> Which do you prefer</p>
     <form action="/selected" method="post">
         {{range $1}}
-        <input type="radio" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}}checked{{end}}> {{.Text}}
+        <input type="text" name={{.Name}} value={{.Value}}>
         {{end}}
+        <input type="submit" value="Submit">
     </form>
     {{end}}
 

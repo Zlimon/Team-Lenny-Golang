@@ -1,4 +1,4 @@
-<p align="center"><b>SYSTEMPESIFIKASJON</b></p>
+<p align="center"><b>SYSTEMSPESIFIKASJON</b></p>
 
 Applikasjonen søker å gjøre det enkelt for brukeren å søke opp pokèmon og finne diverse informasjon om dem.
 Som f.eks type, abilities, høyde, vekt og et bilde av pokèmonen.

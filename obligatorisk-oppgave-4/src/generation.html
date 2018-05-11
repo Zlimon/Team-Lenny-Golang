@@ -13,7 +13,6 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Team Lenny" />
-    <!--<meta http-equiv="default-style" content="C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/style.css" />!-->
 
     <style type="text/css">
         body {
@@ -174,6 +173,9 @@
         .highlight {
             color: #ffe066;
         }
+        .pokemonColor {
+            color: {{.Color}};
+        }
     </style>
 </head>
 <!--End of Hovud-->
@@ -182,7 +184,7 @@
 <div class="leftContent">
     <ul>
         <li><a href="/">Hjem</a></li>
-        <li><a href="/">Gjett</a></li>
+        <li><a href="/quiz">Quiz</a></li>
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">Generasjon</a>
             <div class="dropdown-content">
@@ -207,18 +209,30 @@
 </div>
 
 <div class="rightContent">
-<h1 style="margin-bottom: 20px; margin-top: 20px;">{{.Name}} <span class="highlight">#{{.ID}}</span></h1>
+<h1 style="margin-bottom: 20px; margin-top: 20px;">{{.Name}} <span class="pokemonColor">#{{.ID}}</span></h1>
 
 <table class="center">
 <tr>
-<td><p style="border-bottom: solid #2a4e89;">#{{.PreviousPokemonName}}</p><img src="{{.PreviousPokemon}}"  style="background-color: #769bd5; width: 150px; border-radius: 15px;" /></td>
-    <td style="width: 75px;"><i class="left" /></td>
-<td><img src="{{.Image}}"  style="background-color: #9db7e1; border-radius: 15px;" /></td>
-    <td style="width: 75px;"><i class="right" /></td>
-<td><p style="border-bottom: solid #2a4e89;">#{{.NextPokemonName}}</p><img src="{{.NextPokemon}}"  style="background-color: #769bd5; width: 150px; border-radius: 15px;" /></td>
-    <td></td>
+<td>
+<p style="border-bottom: solid #2a4e89;">{{.PreviousPokemonName}}</p>
+        <img src="{{.PreviousPokemon}}"  style="background-color: #769bd5;  width: 150px; border-radius: 15px;" />
+</td>
+    <td style="width: 75px;">
+        <i class="left" />
+    </td>
+<td>
+        <img src="{{.Image}}"  style="background-color: #9db7e1; width: 300px; border-radius: 15px;" />
+</td>
+    <td style="width: 75px;">
+        <i class="right" />
+    </td>
+<td>
+<p style="border-bottom: solid #2a4e89;">{{.NextPokemonName}}</p>
+        <img src="{{.NextPokemon}}"  style="background-color: #769bd5; width: 150px; border-radius: 15px;" />
+</td>
 </tr>
 </table>
+
 <table class="center">
 <tr>
 <td>
@@ -228,31 +242,24 @@
         <img style="vertical-align: middle;" src="{{.Sprite}}" />
 </td>
 <td>
+        <img style="vertical-align: middle;" src="{{.StaticShiny}}" />
+</td>
+<td>
         <img style="vertical-align: middle;" src="{{.ShinySprite}}" />
 </td>
 </tr>
-    <tr>
-        <td>
-            <p>Static</p>
-        </td>
-        <td>
-            <p>Animated</p>
-        </td>
-        <td>
-            <p>Shiny</p>
-        </td>
-    </tr>
 </table>
+
 
 <div class="infoBox">
 <table>
 <tr>
-<td>Height: <span class="highlight">{{.Height}}</span> m</td>
-<td>Weight: <span class="highlight">{{.Weight}}</span> kg</td>
+<td>Høyde: <span class="highlight">{{.Height}}</span> m</td>
+<td>Vekt: <span class="highlight">{{.Weight}}</span> kg</td>
 </tr>
     <tr>
-        <td>Types:</td>
-        <td>Abilities:</td>
+        <td>Type:</td>
+        <td>Evner:</td>
     </tr>
 <tr>
 <td><div class="primaryTypeColor">{{.PrimaryType}}</div> <div class="secondaryTypeColor">{{.SecondaryType}}</div></td>

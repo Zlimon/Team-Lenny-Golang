@@ -3,42 +3,32 @@ package main
 import (
 	"net/http"
 	"fmt"
-	"os"
 	"io/ioutil"
-	"log"
 	"encoding/json"
 	"strings"
 	"math/rand"
 	"time"
 	"strconv"
 	"html/template"
+	"log"
 )
+type Pokemon struct {
+	Results	[]struct {
+		Name string `json:"name"`
+	} `json:"results"`
+}
 
 type Specie struct {
 	Color struct {
 		Name string `json:"name"`
 	} `json:"color"`
-	ID        int `json:"id"`
-	FlavorTextEntries	[]Text	`json:"flavor_text_entries"`
 	Genera       []struct {
 		Genus    string `json:"genus"`
 	} `json:"genera"`
-	EvolvesFromSpecies struct {
-		Name string `json:"name"`
-	} `json:"evolves_from_species"`
-	Name           string `json:"name"`
-	EvolutionChain struct {
-	} `json:"evolution_chain"`
 }
 
 type Text struct {
 	Text	string	`json:"flavor_text"`
-}
-
-type Pokemon struct {
-	Results	[]struct {
-		Name string `json:"name"`
-	} `json:"results"`
 }
 
 type Information struct {
@@ -77,7 +67,7 @@ type PageData struct {
 	PageBackground		string
 
 	Search 				[]SearchBox
-	Error			string
+	Error				string
 	PokemonAmount		int
 	PokemonGen			string
 	PokemonList			[]string
@@ -105,32 +95,29 @@ type PageData struct {
 	Text				string
 	Color				string
 
-	Guess				[]GuessBox
+	Quiz				[]QuizBox
 	Response			string
 	Points				int
+
+	AnswerCheck			bool
 }
 
 type SearchBox struct {
 	PokemonSearch	string
 }
 
-type GuessBox struct {
-	PokemonGuess	string
+type QuizBox struct {
+	PokemonQuiz	string
 }
 
 var pokemonList []string
 
 func main() {
 	pokemonAPI, err := http.Get("https://pokeapi.co/api/v2/pokemon/?limit=802")
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
-	}
+	errorCheck(err)
 
 	pokemonData, err := ioutil.ReadAll(pokemonAPI.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
+	errorCheck(err)
 
 	var pokemonObject Pokemon
 	json.Unmarshal(pokemonData, &pokemonObject)
@@ -144,8 +131,7 @@ func main() {
 	fmt.Println("Pokemon liste fullført!", len(pokemonObject.Results), "initialisert!")
 
 	http.HandleFunc("/", pokemon)
-	http.HandleFunc("/guess", guess)
-	http.HandleFunc("/answer", answer)
+	http.HandleFunc("/search", search)
 	http.HandleFunc("/gen1", generation)
 	http.HandleFunc("/gen2", generation)
 	http.HandleFunc("/gen3", generation)
@@ -153,111 +139,10 @@ func main() {
 	http.HandleFunc("/gen5", generation)
 	http.HandleFunc("/gen6", generation)
 	http.HandleFunc("/gen7", generation)
-	//http.HandleFunc("/selected", UserSelected)
-	http.HandleFunc("/search", search)
-	//http.HandleFunc("/hoenn", hoenn)
-	//http.HandleFunc("/test", test)
+	http.HandleFunc("/quiz", quiz)
+	http.HandleFunc("/response", response)
 
-	errr := http.ListenAndServe(":80", nil)
-	if err != nil {
-		log.Fatal(errr)
-	}
-}
-
-var randomGuess string
-var points int
-
-func guess(w http.ResponseWriter, r *http.Request) {
-	//if reset == true {
-		//fmt.Println("Reset")
-	//} else {
-		//fmt.Println("Continue")
-	//}
-
-	guessBox := []GuessBox {
-		GuessBox{"pokemonGuess"},
-	}
-
-	rand.Seed(time.Now().UnixNano())
-	random := rand.Intn(len(pokemonList))
-	randomGuess = strconv.Itoa(random)
-
-	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomGuess+".png"
-	if random <= 9 {
-		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomGuess+".png"
-	} else if random <= 99 {
-		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomGuess+".png"
-	}
-
-	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/guess.html"))
-
-	pokemonTemplateData := PageData {
-		PageTitle: "Guess who's that Pokemon!",
-		Guess: guessBox,
-		Image: image,
-		Points: points,
-	}
-
-	tmpl.Execute(w, pokemonTemplateData)
-}
-func answer(w http.ResponseWriter, r *http.Request) {
-	guessBox := []GuessBox {
-		GuessBox{"pokemonGuess"},
-	}
-
-	var answerResponse string
-
-	r.ParseForm()
-	guessResult := r.Form.Get("pokemonGuess")
-	lowerGuessResult := strings.ToLower(guessResult)
-
-	randomGuessINT, _ := strconv.Atoi(randomGuess)
-	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomGuess+".png"
-	if randomGuessINT <= 9 {
-		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomGuess+".png"
-	} else if randomGuessINT <= 99 {
-		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomGuess+".png"
-	}
-
-	errorMessage := "En ukjent feil har oppstått!"
-	answer := false
-	if _, err := strconv.Atoi(guessResult); err == nil {
-		errorMessage = "Du kan ikke skrive inn numre!"
-	} else if guessResult == "" {
-		errorMessage = "Du må skrive inn noe!"
-	} else {
-		if lowerGuessResult == pokemonList[randomGuessINT-1] {
-			errorMessage = ""
-			answerResponse = "Riktig svar 1!"
-			points++
-			answer = true
-		} else if _, err := strconv.Atoi(lowerGuessResult); err == nil {
-			errorMessage = ""
-			answerResponse = "Riktig svar 2!"
-			points++
-			answer = true
-		}
-		if answer == false {
-			errorMessage = "Feil svar! Prøv igjen!"
-			points--
-		}
-
-		fmt.Println(guessResult)
-		fmt.Println(pokemonList[randomGuessINT-1])
-	}
-
-	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/guess.html"))
-
-	pokemonTemplateData := PageData {
-		PageTitle: "Guess who's that Pokemon!",
-		Guess: guessBox,
-		Image: image,
-		Response: answerResponse,
-		Points: points,
-		Error: errorMessage,
-	}
-
-	tmpl.Execute(w, pokemonTemplateData)
+	http.ListenAndServe(":80", nil)
 }
 
 func pokemon(w http.ResponseWriter, r *http.Request) {
@@ -270,7 +155,6 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 	randomPokemon := strconv.Itoa(random)
 
 	previousImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random-1)+".png"
-	//previousPokemon := strconv.Itoa(random-1)
 	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomPokemon+".png"
 	nextImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random+1)+".png"
 	if random <= 9 {
@@ -284,20 +168,13 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 	}
 	if random == 1 {
 		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(len(pokemonList))+".png"
-		//previousPokemon = strconv.Itoa(len(pokemonList))
 	}
-	//previousPokemonName := pokemonList[random-1]
 
-	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+randomPokemon+"/") // Henter informasjon om en tilfeldig Pokemon
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
-	}
+	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+randomPokemon+"/")
+	errorCheck(err)
 
 	informationData, err := ioutil.ReadAll(information.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
+	errorCheck(err)
 
 	var informationObject Information
 	json.Unmarshal(informationData, &informationObject)
@@ -315,29 +192,15 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 		shinySprite = informationObject.Sprite.FrontShiny
 	}
 
-	specie, err := http.Get("https://pokeapi.co/api/v2/pokemon-species/"+randomPokemon+"/") // Henter informasjon om en tilfeldig Pokemon
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
-	}
+	specie, err := http.Get("https://pokeapi.co/api/v2/pokemon-species/"+randomPokemon+"/")
+	errorCheck(err)
 
 	specieData, err := ioutil.ReadAll(specie.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
+	errorCheck(err)
 
 	var specieObject Specie
 	json.Unmarshal(specieData, &specieObject)
 
-	//testColor := specieObject.Color.Name
-	//testID := specieObject.ID
-	pokemonTextList := make([]string, 0)
-	for i := 0; i < len(specieObject.FlavorTextEntries); i++ {
-		pokemonTextList = append(pokemonTextList, strings.Title(specieObject.FlavorTextEntries[i].Text))
-	}
-	//testGenera := specieObject.Genera[2]
-	//testEvolveFrom := specieObject.EvolvesFromSpecies.Name
-	//testName := specieObject.Name
 	specieColor := specieObject.Color.Name
 
 	calcHeight := float64(informationObject.Height) / 10
@@ -455,12 +318,11 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 
 	pokemonTemplateData := PageData {
 		PageTitle: "Pokemon GO(lang)",
-		//PageBackground: DittoBackground,
 		Search: searchBox,
-		//PreviousPokemonName: previousPokemon,
+		PreviousPokemonName: strings.Title(pokemonList[random-2]),
 		PreviousPokemon: previousImage,
 		Image: image,
-		//NextPokemonName: strings.Title(pokemonList[random+1])+" #"+strconv.Itoa(random+1),
+		NextPokemonName: strings.Title(pokemonList[random]),
 		NextPokemon: nextImage,
 		StaticSprite: staticSprite,
 		Sprite: sprite,
@@ -477,238 +339,7 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 		SecondaryTypeColor: pokemonSecondaryTypeColor,
 		Abilities: pokemonAbilityList,
 
-		//Text: pokemonTextList[1],
 		Color: specieColor,
-	}
-
-	tmpl.Execute(w, pokemonTemplateData)
-}
-
-func generation(w http.ResponseWriter, r *http.Request) {
-	var chosenGeneration string
-
-	limit := len(pokemonList)
-	offset := 0
-
-	if r.URL.Path == "/gen1" {
-		chosenGeneration = "Generasjon 1"
-		limit = 151
-	} else if r.URL.Path == "/gen2" {
-		chosenGeneration = "Generasjon 2"
-		offset = 151
-		limit = 251
-	} else if r.URL.Path == "/gen3" {
-		chosenGeneration = "Generasjon 3"
-		offset = 251
-		limit = 386
-	} else if r.URL.Path == "/gen4" {
-		chosenGeneration = "Generasjon 4"
-		offset = 386
-		limit = 493
-	} else if r.URL.Path == "/gen5" {
-		chosenGeneration = "Generasjon 5"
-		offset = 493
-		limit = 649
-	} else if r.URL.Path == "/gen6" {
-		chosenGeneration = "Generasjon 6"
-		offset = 649
-		limit = 721
-	} else if r.URL.Path == "/gen7" {
-		chosenGeneration = "Generasjon 7"
-		offset = 721
-		limit = 802
-	}
-
-	pokemonList := pokemonList[offset:limit]
-
-	rand.Seed(time.Now().UnixNano())
-	//random := rand.Intn(((offset)+limit)-offset+1)+offset
-	random := rand.Intn(limit - offset) + offset
-	randomPokemon := strconv.Itoa(random)
-
-	previousImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random-1)+".png"
-	//previousPokemon := strconv.Itoa(random-1)
-	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomPokemon+".png"
-	nextImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random+1)+".png"
-	if random <= 9 {
-		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+strconv.Itoa(random-1)+".png"
-		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomPokemon+".png"
-		nextImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+strconv.Itoa(random+1)+".png"
-	} else if random <= 99 {
-		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+strconv.Itoa(random-1)+".png"
-		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomPokemon+".png"
-		nextImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+strconv.Itoa(random+1)+".png"
-	}
-	if random == 1 {
-		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(len(pokemonList))+".png"
-		//previousPokemon = strconv.Itoa(len(pokemonList))
-	}
-
-	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+randomPokemon+"/") // Henter informasjon om en tilfeldig Pokemon
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
-	}
-
-	informationData, err := ioutil.ReadAll(information.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var informationObject Information
-	json.Unmarshal(informationData, &informationObject)
-
-	staticSprite := informationObject.Sprite.FrontDefault
-	sprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
-	staticShiny := informationObject.Sprite.FrontShiny
-	shinySprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
-	if random <= 721 {
-		sprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
-		staticShiny = informationObject.Sprite.FrontShiny
-		shinySprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
-	} else {
-		sprite = informationObject.Sprite.FrontDefault
-		shinySprite = informationObject.Sprite.FrontShiny
-	}
-
-	calcHeight := float64(informationObject.Height) / 10
-	calcWeight := float64(informationObject.Weight) / 10
-	titleName := strings.Title(informationObject.Name)
-
-	pokemonTypeList := make([]string, 0)
-	for i := 0; i < len(informationObject.Type); i++ {
-		pokemonTypeList = append(pokemonTypeList, strings.Title(informationObject.Type[i].Type.TypeName))
-	}
-
-	var pokemonPrimaryType string
-	var pokemonSecondaryType string
-	var pokemonPrimaryTypeColor string
-	var pokemonSecondaryTypeColor string
-
-	pokemonPrimaryType = pokemonTypeList[0]
-	if pokemonTypeList[0] == "Normal" { //|| pokemonTypeList[1] == "[Normal]"
-		pokemonPrimaryTypeColor = "A8A878"
-	} else if pokemonTypeList[0] == "Fighting" { //|| pokemonTypeList[1] == "[Fighting]"
-		pokemonPrimaryTypeColor = "C03028"
-	} else if pokemonTypeList[0] == "Flying" { //|| pokemonTypeList[1] == "[Flying]"
-		pokemonPrimaryTypeColor = "A890F0"
-	} else if pokemonTypeList[0] == "Poison" { //|| pokemonTypeList[1] == "[Poison]"
-		pokemonPrimaryTypeColor = "A040A0"
-	} else if pokemonTypeList[0] == "Ground" { //|| pokemonTypeList[1] == "[Ground]"
-		pokemonPrimaryTypeColor = "E0C068"
-	} else if pokemonTypeList[0] == "Rock" { //|| pokemonTypeList[1] == "[Rock]"
-		pokemonPrimaryTypeColor = "B8A038"
-	} else if pokemonTypeList[0] == "Bug" { //|| pokemonTypeList[1] == "[Bug]"
-		pokemonPrimaryTypeColor = "A8B820"
-	} else if pokemonTypeList[0] == "Ghost" { //|| pokemonTypeList[1] == "[Ghost]"
-		pokemonPrimaryTypeColor = "705898"
-	} else if pokemonTypeList[0] == "Steel" { //|| pokemonTypeList[1] == "[Steel]"
-		pokemonPrimaryTypeColor = "B8B8D0"
-	} else if pokemonTypeList[0] == "Fire" { //|| pokemonTypeList[1] == "[Fire]"
-		pokemonPrimaryTypeColor = "F08030"
-	} else if pokemonTypeList[0] == "Water" { //|| pokemonTypeList[1] == "[Water]"
-		pokemonPrimaryTypeColor = "6890F0"
-	} else if pokemonTypeList[0] == "Grass" { //|| pokemonTypeList[1] == "[Grass]"
-		pokemonPrimaryTypeColor = "78C850"
-	} else if pokemonTypeList[0] == "Electric" { //|| pokemonTypeList[1] == "[Electric]"
-		pokemonPrimaryTypeColor = "F8D030"
-	} else if pokemonTypeList[0] == "Psychic" { //|| pokemonTypeList[1] == "[Psychic]"
-		pokemonPrimaryTypeColor = "F85888"
-	} else if pokemonTypeList[0] == "Ice" { //|| pokemonTypeList[1] == "[Ice]"
-		pokemonPrimaryTypeColor = "98D8D8"
-	} else if pokemonTypeList[0] == "Dragon" { //|| pokemonTypeList[1] == "[Dragon]"
-		pokemonPrimaryTypeColor = "7038F8"
-	} else if pokemonTypeList[0] == "Dark" { //|| pokemonTypeList[1] == "[Dark]"
-		pokemonPrimaryTypeColor = "705848"
-	} else if pokemonTypeList[0] == "Fairy" { //|| pokemonTypeList[1] == "[Fairy]"
-		pokemonPrimaryTypeColor = "EE99AC"
-	} else if pokemonTypeList[0] == "Unknown" { //|| pokemonTypeList[1] == "[Unknown]"
-		pokemonPrimaryTypeColor = "68A090"
-	} else if pokemonTypeList[0] == "Shadow" { //|| pokemonTypeList[1] == "[Shadow]"
-		pokemonPrimaryTypeColor = "000000"
-	} else {
-		pokemonPrimaryTypeColor = "3564AE"
-	}
-
-	if len(pokemonTypeList) > 1 {
-		pokemonSecondaryType = pokemonTypeList[1]
-		if pokemonTypeList[1] == "Normal" { //|| pokemonTypeList[1] == "[Normal]"
-			pokemonSecondaryTypeColor = "A8A878"
-		} else if pokemonTypeList[1] == "Fighting" { //|| pokemonTypeList[1] == "[Fighting]"
-			pokemonSecondaryTypeColor = "C03028"
-		} else if pokemonTypeList[1] == "Flying" { //|| pokemonTypeList[1] == "[Flying]"
-			pokemonSecondaryTypeColor = "A890F0"
-		} else if pokemonTypeList[1] == "Poison" { //|| pokemonTypeList[1] == "[Poison]"
-			pokemonSecondaryTypeColor = "A040A0"
-		} else if pokemonTypeList[1] == "Ground" { //|| pokemonTypeList[1] == "[Ground]"
-			pokemonSecondaryTypeColor = "E0C068"
-		} else if pokemonTypeList[1] == "Rock" { //|| pokemonTypeList[1] == "[Rock]"
-			pokemonSecondaryTypeColor = "B8A038"
-		} else if pokemonTypeList[1] == "Bug" { //|| pokemonTypeList[1] == "[Bug]"
-			pokemonSecondaryTypeColor = "A8B820"
-		} else if pokemonTypeList[1] == "Ghost" { //|| pokemonTypeList[1] == "[Ghost]"
-			pokemonSecondaryTypeColor = "705898"
-		} else if pokemonTypeList[1] == "Steel" { //|| pokemonTypeList[1] == "[Steel]"
-			pokemonSecondaryTypeColor = "B8B8D0"
-		} else if pokemonTypeList[1] == "Fire" { //|| pokemonTypeList[1] == "[Fire]"
-			pokemonSecondaryTypeColor = "F08030"
-		} else if pokemonTypeList[1] == "Water" { //|| pokemonTypeList[1] == "[Water]"
-			pokemonSecondaryTypeColor = "6890F0"
-		} else if pokemonTypeList[1] == "Grass" { //|| pokemonTypeList[1] == "[Grass]"
-			pokemonSecondaryTypeColor = "78C850"
-		} else if pokemonTypeList[1] == "Electric" { //|| pokemonTypeList[1] == "[Electric]"
-			pokemonSecondaryTypeColor = "F8D030"
-		} else if pokemonTypeList[1] == "Psychic" { //|| pokemonTypeList[1] == "[Psychic]"
-			pokemonSecondaryTypeColor = "F85888"
-		} else if pokemonTypeList[1] == "Ice" { //|| pokemonTypeList[1] == "[Ice]"
-			pokemonSecondaryTypeColor = "98D8D8"
-		} else if pokemonTypeList[1] == "Dragon" { //|| pokemonTypeList[1] == "[Dragon]"
-			pokemonSecondaryTypeColor = "7038F8"
-		} else if pokemonTypeList[1] == "Dark" { //|| pokemonTypeList[1] == "[Dark]"
-			pokemonSecondaryTypeColor = "705848"
-		} else if pokemonTypeList[1] == "Fairy" { //|| pokemonTypeList[1] == "[Fairy]"
-			pokemonSecondaryTypeColor = "EE99AC"
-		} else if pokemonTypeList[1] == "Unknown" { //|| pokemonTypeList[1] == "[Unknown]"
-			pokemonSecondaryTypeColor = "68A090"
-		} else if pokemonTypeList[1] == "Shadow" { //|| pokemonTypeList[1] == "[Shadow]"
-			pokemonSecondaryTypeColor = "000000"
-		} else {
-			pokemonSecondaryTypeColor = "3564AE"
-		}
-	}
-
-	pokemonAbilityList := make([]string, 0)
-	for i := 0; i < len(informationObject.Ability); i++ {
-		pokemonAbilityList = append(pokemonAbilityList, "[" +strings.Title(informationObject.Ability[i].Ability.AbilityName)+ "]")
-	}
-
-	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/generation.html"))
-
-	pokemonTemplateData := PageData {
-		PageTitle: chosenGeneration,
-		//PageBackground: DittoBackground,
-		PokemonAmount: limit,
-		PokemonGen: chosenGeneration,
-		PokemonList: pokemonList,
-		//PreviousPokemonName: strings.Title(pokemonList[random])+" #"+strconv.Itoa(random),
-		PreviousPokemon: previousImage,
-		Image: image,
-		//NextPokemonName: strings.Title(pokemonList[random])+" #"+strconv.Itoa(random),
-		NextPokemon: nextImage,
-		StaticSprite: staticSprite,
-		Sprite: sprite,
-		StaticShiny: staticShiny,
-		ShinySprite: shinySprite,
-
-		ID: informationObject.ID,
-		Name: titleName,
-		Height: calcHeight,
-		Weight: calcWeight,
-		PrimaryType: pokemonPrimaryType,
-		SecondaryType: pokemonSecondaryType,
-		PrimaryTypeColor: pokemonPrimaryTypeColor,
-		SecondaryTypeColor: pokemonSecondaryTypeColor,
-		Abilities: pokemonAbilityList,
 	}
 
 	tmpl.Execute(w, pokemonTemplateData)
@@ -752,9 +383,10 @@ func search(w http.ResponseWriter, r *http.Request) {
 
 	searchINT, _ := strconv.Atoi(searchID)
 	previousImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(searchINT-1)+".png"
-	//previousPokemon := strconv.Itoa(searchINT-1)
+	previousName := strings.Title(pokemonList[searchINT-1])
 	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+searchID+".png"
 	nextImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(searchINT+1)+".png"
+	nextName := strings.Title(pokemonList[searchINT])
 	if searchINT <= 9 {
 		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+strconv.Itoa(searchINT-1)+".png"
 		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+searchID+".png"
@@ -766,19 +398,14 @@ func search(w http.ResponseWriter, r *http.Request) {
 	}
 	if searchID == "1" {
 		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(len(pokemonList))+".png"
-		//previousPokemon = strconv.Itoa(len(pokemonList))
+		previousName = "Marshadow"
 	}
 
-	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+searchID+"/") // Henter informasjon om Pokemon
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
-	}
+	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+searchID+"/")
+	errorCheck(err)
 
 	informationData, err := ioutil.ReadAll(information.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
+	errorCheck(err)
 
 	var informationObject Information
 	json.Unmarshal(informationData, &informationObject)
@@ -911,13 +538,12 @@ func search(w http.ResponseWriter, r *http.Request) {
 
 	pokemonTemplateData := PageData {
 		PageTitle: "Søk",
-		//PageBackground: DittoBackground,
 		Search: searchBox,
 		Error: errorMessage,
-		//PreviousPokemonName: strings.Title(pokemonList[searchINT-2])+" #"+strconv.Itoa(searchINT-2),
+		PreviousPokemonName: previousName,
 		PreviousPokemon: previousImage,
 		Image: image,
-		//NextPokemonName: strings.Title(pokemonList[searchINT])+" #"+strconv.Itoa(searchINT),
+		NextPokemonName: nextName,
 		NextPokemon: nextImage,
 		StaticSprite: staticSprite,
 		Sprite: sprite,
@@ -936,4 +562,323 @@ func search(w http.ResponseWriter, r *http.Request) {
 	}
 
 	tmpl.Execute(w, pokemonTemplateData)
+}
+
+var answerCheck bool
+var points int
+var randomQuiz string
+
+func quiz(w http.ResponseWriter, r *http.Request) {
+	if answerCheck == false {
+		points--
+	}
+
+	answerCheck = false
+
+	QuizBox := []QuizBox {
+		QuizBox{"pokemonQuiz"},
+	}
+
+	rand.Seed(time.Now().UnixNano())
+	random := rand.Intn(len(pokemonList))
+	randomQuiz = strconv.Itoa(random)
+
+	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomQuiz+".png"
+	if random <= 9 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomQuiz+".png"
+	} else if random <= 99 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomQuiz+".png"
+	}
+
+	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/quiz.html"))
+
+	pokemonTemplateData := PageData {
+		PageTitle: "Quiz who's that Pokemon!",
+		Quiz: QuizBox,
+		Image: image,
+		Points: points,
+	}
+
+	tmpl.Execute(w, pokemonTemplateData)
+}
+
+func response(w http.ResponseWriter, r *http.Request) {
+	QuizBox := []QuizBox {
+		QuizBox{"pokemonQuiz"},
+	}
+
+	var answerResponse string
+
+	r.ParseForm()
+	QuizResult := r.Form.Get("pokemonQuiz")
+	lowerQuizResult := strings.ToLower(QuizResult)
+	randomQuizINT, _ := strconv.Atoi(randomQuiz)
+
+	errorMessage := "En ukjent feil har oppstått!"
+	if _, err := strconv.Atoi(QuizResult); err == nil {
+		errorMessage = "Du kan ikke bruke sifre!"
+	} else if QuizResult == "" {
+		errorMessage = "Du må skrive inn noe!"
+	} else {
+		if lowerQuizResult == pokemonList[randomQuizINT-1] {
+			errorMessage = ""
+			answerResponse = "Korrekt!"
+			points++
+			answerCheck = true
+		}
+		if answerCheck == false {
+			errorMessage = "Feil svar! Prøv igjen!"
+			points--
+		}
+	}
+
+	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomQuiz+".png"
+	if randomQuizINT <= 9 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomQuiz+".png"
+	} else if randomQuizINT <= 99 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomQuiz+".png"
+	}
+
+	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/Quiz.html"))
+
+	pokemonTemplateData := PageData {
+		PageTitle: "Quiz who's that Pokemon!",
+		Quiz: QuizBox,
+		Image: image,
+		Response: answerResponse,
+		Points: points,
+		Error: errorMessage,
+		AnswerCheck: answerCheck,
+	}
+
+	tmpl.Execute(w, pokemonTemplateData)
+}
+
+func generation(w http.ResponseWriter, r *http.Request) {
+	var chosenGeneration string
+
+	limit := len(pokemonList)
+	offset := 0
+
+	if r.URL.Path == "/gen1" {
+		chosenGeneration = "Generasjon 1"
+		limit = 151
+	} else if r.URL.Path == "/gen2" {
+		chosenGeneration = "Generasjon 2"
+		offset = 151
+		limit = 251
+	} else if r.URL.Path == "/gen3" {
+		chosenGeneration = "Generasjon 3"
+		offset = 251
+		limit = 386
+	} else if r.URL.Path == "/gen4" {
+		chosenGeneration = "Generasjon 4"
+		offset = 386
+		limit = 493
+	} else if r.URL.Path == "/gen5" {
+		chosenGeneration = "Generasjon 5"
+		offset = 493
+		limit = 649
+	} else if r.URL.Path == "/gen6" {
+		chosenGeneration = "Generasjon 6"
+		offset = 649
+		limit = 721
+	} else if r.URL.Path == "/gen7" {
+		chosenGeneration = "Generasjon 7"
+		offset = 721
+		limit = 802
+	}
+
+	pokemonList := pokemonList[offset:limit]
+
+	rand.Seed(time.Now().UnixNano())
+	random := rand.Intn(limit - offset) + offset
+	randomPokemon := strconv.Itoa(random)
+
+	previousImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random-1)+".png"
+	//previousName := strings.Title(pokemonList[random])
+	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomPokemon+".png"
+	nextImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random+1)+".png"
+	//nextName := strings.Title(pokemonList[random])
+	if random <= 9 {
+		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+strconv.Itoa(random-1)+".png"
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomPokemon+".png"
+		nextImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+strconv.Itoa(random+1)+".png"
+	} else if random <= 99 {
+		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+strconv.Itoa(random-1)+".png"
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomPokemon+".png"
+		nextImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+strconv.Itoa(random+1)+".png"
+	}
+	if random == 1 {
+		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(len(pokemonList))+".png"
+	}
+
+	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+randomPokemon+"/")
+	errorCheck(err)
+
+	informationData, err := ioutil.ReadAll(information.Body)
+	errorCheck(err)
+
+	var informationObject Information
+	json.Unmarshal(informationData, &informationObject)
+
+	staticSprite := informationObject.Sprite.FrontDefault
+	sprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
+	staticShiny := informationObject.Sprite.FrontShiny
+	shinySprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
+	if random <= 721 {
+		sprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
+		staticShiny = informationObject.Sprite.FrontShiny
+		shinySprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
+	} else {
+		sprite = informationObject.Sprite.FrontDefault
+		shinySprite = informationObject.Sprite.FrontShiny
+	}
+
+	calcHeight := float64(informationObject.Height) / 10
+	calcWeight := float64(informationObject.Weight) / 10
+	titleName := strings.Title(informationObject.Name)
+
+	pokemonTypeList := make([]string, 0)
+	for i := 0; i < len(informationObject.Type); i++ {
+		pokemonTypeList = append(pokemonTypeList, strings.Title(informationObject.Type[i].Type.TypeName))
+	}
+
+	var pokemonPrimaryType string
+	var pokemonSecondaryType string
+	var pokemonPrimaryTypeColor string
+	var pokemonSecondaryTypeColor string
+
+	pokemonPrimaryType = pokemonTypeList[0]
+	if pokemonTypeList[0] == "Normal" { //|| pokemonTypeList[1] == "[Normal]"
+		pokemonPrimaryTypeColor = "A8A878"
+	} else if pokemonTypeList[0] == "Fighting" { //|| pokemonTypeList[1] == "[Fighting]"
+		pokemonPrimaryTypeColor = "C03028"
+	} else if pokemonTypeList[0] == "Flying" { //|| pokemonTypeList[1] == "[Flying]"
+		pokemonPrimaryTypeColor = "A890F0"
+	} else if pokemonTypeList[0] == "Poison" { //|| pokemonTypeList[1] == "[Poison]"
+		pokemonPrimaryTypeColor = "A040A0"
+	} else if pokemonTypeList[0] == "Ground" { //|| pokemonTypeList[1] == "[Ground]"
+		pokemonPrimaryTypeColor = "E0C068"
+	} else if pokemonTypeList[0] == "Rock" { //|| pokemonTypeList[1] == "[Rock]"
+		pokemonPrimaryTypeColor = "B8A038"
+	} else if pokemonTypeList[0] == "Bug" { //|| pokemonTypeList[1] == "[Bug]"
+		pokemonPrimaryTypeColor = "A8B820"
+	} else if pokemonTypeList[0] == "Ghost" { //|| pokemonTypeList[1] == "[Ghost]"
+		pokemonPrimaryTypeColor = "705898"
+	} else if pokemonTypeList[0] == "Steel" { //|| pokemonTypeList[1] == "[Steel]"
+		pokemonPrimaryTypeColor = "B8B8D0"
+	} else if pokemonTypeList[0] == "Fire" { //|| pokemonTypeList[1] == "[Fire]"
+		pokemonPrimaryTypeColor = "F08030"
+	} else if pokemonTypeList[0] == "Water" { //|| pokemonTypeList[1] == "[Water]"
+		pokemonPrimaryTypeColor = "6890F0"
+	} else if pokemonTypeList[0] == "Grass" { //|| pokemonTypeList[1] == "[Grass]"
+		pokemonPrimaryTypeColor = "78C850"
+	} else if pokemonTypeList[0] == "Electric" { //|| pokemonTypeList[1] == "[Electric]"
+		pokemonPrimaryTypeColor = "F8D030"
+	} else if pokemonTypeList[0] == "Psychic" { //|| pokemonTypeList[1] == "[Psychic]"
+		pokemonPrimaryTypeColor = "F85888"
+	} else if pokemonTypeList[0] == "Ice" { //|| pokemonTypeList[1] == "[Ice]"
+		pokemonPrimaryTypeColor = "98D8D8"
+	} else if pokemonTypeList[0] == "Dragon" { //|| pokemonTypeList[1] == "[Dragon]"
+		pokemonPrimaryTypeColor = "7038F8"
+	} else if pokemonTypeList[0] == "Dark" { //|| pokemonTypeList[1] == "[Dark]"
+		pokemonPrimaryTypeColor = "705848"
+	} else if pokemonTypeList[0] == "Fairy" { //|| pokemonTypeList[1] == "[Fairy]"
+		pokemonPrimaryTypeColor = "EE99AC"
+	} else if pokemonTypeList[0] == "Unknown" { //|| pokemonTypeList[1] == "[Unknown]"
+		pokemonPrimaryTypeColor = "68A090"
+	} else if pokemonTypeList[0] == "Shadow" { //|| pokemonTypeList[1] == "[Shadow]"
+		pokemonPrimaryTypeColor = "000000"
+	} else {
+		pokemonPrimaryTypeColor = "3564AE"
+	}
+
+	if len(pokemonTypeList) > 1 {
+		pokemonSecondaryType = pokemonTypeList[1]
+		if pokemonTypeList[1] == "Normal" { //|| pokemonTypeList[1] == "[Normal]"
+			pokemonSecondaryTypeColor = "A8A878"
+		} else if pokemonTypeList[1] == "Fighting" { //|| pokemonTypeList[1] == "[Fighting]"
+			pokemonSecondaryTypeColor = "C03028"
+		} else if pokemonTypeList[1] == "Flying" { //|| pokemonTypeList[1] == "[Flying]"
+			pokemonSecondaryTypeColor = "A890F0"
+		} else if pokemonTypeList[1] == "Poison" { //|| pokemonTypeList[1] == "[Poison]"
+			pokemonSecondaryTypeColor = "A040A0"
+		} else if pokemonTypeList[1] == "Ground" { //|| pokemonTypeList[1] == "[Ground]"
+			pokemonSecondaryTypeColor = "E0C068"
+		} else if pokemonTypeList[1] == "Rock" { //|| pokemonTypeList[1] == "[Rock]"
+			pokemonSecondaryTypeColor = "B8A038"
+		} else if pokemonTypeList[1] == "Bug" { //|| pokemonTypeList[1] == "[Bug]"
+			pokemonSecondaryTypeColor = "A8B820"
+		} else if pokemonTypeList[1] == "Ghost" { //|| pokemonTypeList[1] == "[Ghost]"
+			pokemonSecondaryTypeColor = "705898"
+		} else if pokemonTypeList[1] == "Steel" { //|| pokemonTypeList[1] == "[Steel]"
+			pokemonSecondaryTypeColor = "B8B8D0"
+		} else if pokemonTypeList[1] == "Fire" { //|| pokemonTypeList[1] == "[Fire]"
+			pokemonSecondaryTypeColor = "F08030"
+		} else if pokemonTypeList[1] == "Water" { //|| pokemonTypeList[1] == "[Water]"
+			pokemonSecondaryTypeColor = "6890F0"
+		} else if pokemonTypeList[1] == "Grass" { //|| pokemonTypeList[1] == "[Grass]"
+			pokemonSecondaryTypeColor = "78C850"
+		} else if pokemonTypeList[1] == "Electric" { //|| pokemonTypeList[1] == "[Electric]"
+			pokemonSecondaryTypeColor = "F8D030"
+		} else if pokemonTypeList[1] == "Psychic" { //|| pokemonTypeList[1] == "[Psychic]"
+			pokemonSecondaryTypeColor = "F85888"
+		} else if pokemonTypeList[1] == "Ice" { //|| pokemonTypeList[1] == "[Ice]"
+			pokemonSecondaryTypeColor = "98D8D8"
+		} else if pokemonTypeList[1] == "Dragon" { //|| pokemonTypeList[1] == "[Dragon]"
+			pokemonSecondaryTypeColor = "7038F8"
+		} else if pokemonTypeList[1] == "Dark" { //|| pokemonTypeList[1] == "[Dark]"
+			pokemonSecondaryTypeColor = "705848"
+		} else if pokemonTypeList[1] == "Fairy" { //|| pokemonTypeList[1] == "[Fairy]"
+			pokemonSecondaryTypeColor = "EE99AC"
+		} else if pokemonTypeList[1] == "Unknown" { //|| pokemonTypeList[1] == "[Unknown]"
+			pokemonSecondaryTypeColor = "68A090"
+		} else if pokemonTypeList[1] == "Shadow" { //|| pokemonTypeList[1] == "[Shadow]"
+			pokemonSecondaryTypeColor = "000000"
+		} else {
+			pokemonSecondaryTypeColor = "3564AE"
+		}
+	}
+
+	pokemonAbilityList := make([]string, 0)
+	for i := 0; i < len(informationObject.Ability); i++ {
+		pokemonAbilityList = append(pokemonAbilityList, "[" +strings.Title(informationObject.Ability[i].Ability.AbilityName)+ "]")
+	}
+
+	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/generation.html"))
+
+	pokemonTemplateData := PageData {
+		PageTitle: chosenGeneration,
+		PokemonAmount: limit,
+		PokemonGen: chosenGeneration,
+		PokemonList: pokemonList,
+		//PreviousPokemonName: previousName,
+		PreviousPokemon: previousImage,
+		Image: image,
+		//NextPokemonName: nextName,
+		NextPokemon: nextImage,
+		StaticSprite: staticSprite,
+		Sprite: sprite,
+		StaticShiny: staticShiny,
+		ShinySprite: shinySprite,
+
+		ID: informationObject.ID,
+		Name: titleName,
+		Height: calcHeight,
+		Weight: calcWeight,
+		PrimaryType: pokemonPrimaryType,
+		SecondaryType: pokemonSecondaryType,
+		PrimaryTypeColor: pokemonPrimaryTypeColor,
+		SecondaryTypeColor: pokemonSecondaryTypeColor,
+		Abilities: pokemonAbilityList,
+	}
+
+	tmpl.Execute(w, pokemonTemplateData)
+}
+
+func errorCheck(err error) {
+	if err != nil {
+		log.Fatal(err)
+	}
 }

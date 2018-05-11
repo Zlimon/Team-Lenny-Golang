@@ -13,7 +13,6 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="Team Lenny" />
-    <!--<meta http-equiv="default-style" content="C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/style.css" />!-->
 
     <style type="text/css">
         body {
@@ -164,7 +163,7 @@
     <div class="leftContent">
         <ul>
             <li><a href="/">Hjem</a></li>
-            <li><a href="/guess">Gjett</a></li>
+            <li><a href="/quiz">Quiz</a></li>
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">Generasjon</a>
                 <div class="dropdown-content">
@@ -187,21 +186,22 @@
                 <h3 style="color: #990000;">{{.Error}}</h3>
                 <h3 style="color: #4CAF50;">{{.Response}}</h3>
 
-                {{with $1:=.Guess}}
+                {{with $1:=.Quiz}}
                     <form action="/response" method="post">
                         {{range $1}}
-                            <input type="text" name="{{.PokemonGuess}}" placeholder="Skriv inn svaret ditt her">
+                            <input type="text" name="{{.PokemonQuiz}}" placeholder="Skriv inn svaret ditt her">
                         {{end}}
                         <input type="submit" value="Gjett!">
-                        <div class="button"><a href="/guess">Jeg vet ikke</a></div>
+                        <div class="button"><a href="/quiz">Jeg vet ikke</a></div>
                     </form>
 
                 {{end}}
-                <h3>Du har {{.Points}} poeng</h3>
 
                 {{if .AnswerCheck}}
-                    <div class="button" style="background: #2a4e89"><a href="/guess">Ny runde</a></div>
+                    <div class="button" style="background: #2a4e89"><a href="/quiz">Ny runde</a></div>
                 {{end}}
+
+                <h3>Du har {{.Points}} poeng</h3>
             </div>
         </div>
     </div>

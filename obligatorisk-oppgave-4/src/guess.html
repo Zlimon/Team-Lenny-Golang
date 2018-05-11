@@ -185,7 +185,7 @@
     <div class="leftContent">
         <ul>
             <li><a href="/">Hjem</a></li>
-            <li><a href="/guess">Gjett</a></li>
+            <li><a href="/">Gjett</a></li>
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">Generasjon</a>
                 <div class="dropdown-content">
@@ -204,83 +204,24 @@
             <h1>{{.PageTitle}}</h1>
 
             <div class="mainContent">
-                {{with $1:=.Search}}
-                    <p>Søk etter Pokemon med navn eller ID:</p>
-
-                    <form action="/search" method="post">
+                {{with $1:=.Guess}}
+                    <form action="/answer" method="post">
                         {{range $1}}
-                            <input type="text" name="{{.PokemonSearch}}" placeholder="Prøv Pikachu eller 25">
+                            <input type="text" name="{{.PokemonGuess}}" placeholder="Skriv inn svaret ditt her">
                         {{end}}
                         <input type="submit" value="Søk">
                     </form>
                 {{end}}
                 <h3 style="color: #990000;">{{.Error}}</h3>
+                <h3 style="color: #990000;">{{.Response}}</h3>
+                <h3>Du har {{.Points}} poeng</h3>
+                <h3><a href="/guess">Ny runde</a></h3>
             </div>
         </div>
     </div>
 
-    <div class="rightContent">
-        <h1 style="margin-bottom: 20px; margin-top: 20px;">{{.Name}} <span class="pokemonColor">#{{.ID}}</span></h1>
-
-            <table class="center">
-                <tr>
-                    <td>
-                        <p style="border-bottom: solid #2a4e89;">{{.PreviousPokemonName}}</p>
-                        <img src="{{.PreviousPokemon}}"  style="background-color: #769bd5;  width: 150px; border-radius: 15px;" />
-                    </td>
-                    <td style="width: 75px;">
-                        <i class="left" />
-                    </td>
-                    <td>
-                        <img src="{{.Image}}"  style="background-color: #9db7e1; width: 300px; border-radius: 15px;" />
-                    </td>
-                    <td style="width: 75px;">
-                        <i class="right" />
-                    </td>
-                    <td>
-                        <p style="border-bottom: solid #2a4e89;">{{.NextPokemonName}}</p>
-                        <img src="{{.NextPokemon}}"  style="background-color: #769bd5; width: 150px; border-radius: 15px;" />
-                    </td>
-                </tr>
-            </table>
-
-        <table class="center">
-            <tr>
-                <td>
-                    <img style="vertical-align: middle;" src="{{.StaticSprite}}" />
-                </td>
-                <td>
-                    <img style="vertical-align: middle;" src="{{.Sprite}}" />
-                </td>
-                <td>
-                    <img style="vertical-align: middle;" src="{{.StaticShiny}}" />
-                </td>
-                <td>
-                    <img style="vertical-align: middle;" src="{{.ShinySprite}}" />
-                </td>
-            </tr>
-        </table>
-
-        <div class="infoBox">
-            <p>{{.Text}}</p>
-        </div>
-
-        <div class="infoBox">
-            <table>
-                <tr>
-                    <td>Høyde: <span class="highlight">{{.Height}}</span> m</td>
-                    <td>Vekt: <span class="highlight">{{.Weight}}</span> kg</td>
-                </tr>
-                <tr>
-                    <td>Type:</td>
-                    <td>Evner:</td>
-                </tr>
-                <tr>
-                    <td><div class="primaryTypeColor">{{.PrimaryType}}</div> <div class="secondaryTypeColor">{{.SecondaryType}}</div></td>
-                    <td>{{.Abilities}}</td>
-                </tr>
-            </table>
-        </div>
+    <div class="rightContent center" style="padding-top: 65px; padding-bottom: 65px;">
+        <img src="{{.Image}}"  style="background-color: #9db7e1; width: 300px; border-radius: 15px;" />
     </div>
 </body>
 </html>

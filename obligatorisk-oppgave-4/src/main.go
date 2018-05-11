@@ -77,7 +77,7 @@ type PageData struct {
 	PageBackground		string
 
 	Search 				[]SearchBox
-	SearchError			string
+	Error			string
 	PokemonAmount		int
 	PokemonGen			string
 	PokemonList			[]string
@@ -89,6 +89,7 @@ type PageData struct {
 	NextPokemon			string
 	StaticSprite		string
 	Sprite				string
+	StaticShiny			string
 	ShinySprite			string
 
 	ID					int
@@ -102,10 +103,19 @@ type PageData struct {
 	Abilities			[]string
 
 	Text				string
+	Color				string
+
+	Guess				[]GuessBox
+	Response			string
+	Points				int
 }
 
 type SearchBox struct {
 	PokemonSearch	string
+}
+
+type GuessBox struct {
+	PokemonGuess	string
 }
 
 var pokemonList []string
@@ -134,6 +144,8 @@ func main() {
 	fmt.Println("Pokemon liste fullført!", len(pokemonObject.Results), "initialisert!")
 
 	http.HandleFunc("/", pokemon)
+	http.HandleFunc("/guess", guess)
+	http.HandleFunc("/answer", answer)
 	http.HandleFunc("/gen1", generation)
 	http.HandleFunc("/gen2", generation)
 	http.HandleFunc("/gen3", generation)
@@ -144,7 +156,7 @@ func main() {
 	//http.HandleFunc("/selected", UserSelected)
 	http.HandleFunc("/search", search)
 	//http.HandleFunc("/hoenn", hoenn)
-	http.HandleFunc("/test", test)
+	//http.HandleFunc("/test", test)
 
 	errr := http.ListenAndServe(":80", nil)
 	if err != nil {
@@ -152,41 +164,100 @@ func main() {
 	}
 }
 
-func test(w http.ResponseWriter, r *http.Request) {
-	/*
-	fmt.Println("let go")
+var randomGuess string
+var points int
 
-	specie, err := http.Get("https://pokeapi.co/api/v2/pokemon-species/54/") // Henter informasjon om en tilfeldig Pokemon
-	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
+func guess(w http.ResponseWriter, r *http.Request) {
+	//if reset == true {
+		//fmt.Println("Reset")
+	//} else {
+		//fmt.Println("Continue")
+	//}
+
+	guessBox := []GuessBox {
+		GuessBox{"pokemonGuess"},
 	}
 
-	specieData, err := ioutil.ReadAll(specie.Body)
-	if err != nil {
-		log.Fatal(err)
+	rand.Seed(time.Now().UnixNano())
+	random := rand.Intn(len(pokemonList))
+	randomGuess = strconv.Itoa(random)
+
+	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomGuess+".png"
+	if random <= 9 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomGuess+".png"
+	} else if random <= 99 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomGuess+".png"
 	}
 
-	var specieObject Specie
-	json.Unmarshal(specieData, &specieObject)
+	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/guess.html"))
 
-	testColor := specieObject.Color.Name
-	testID := specieObject.ID
-	testText := specieObject.FlavorTextEntries[2]
-	testGenera := specieObject.Genera[2]
-	testEvolveFrom := specieObject.EvolvesFromSpecies.Name
-	testName := specieObject.Name
+	pokemonTemplateData := PageData {
+		PageTitle: "Guess who's that Pokemon!",
+		Guess: guessBox,
+		Image: image,
+		Points: points,
+	}
 
+	tmpl.Execute(w, pokemonTemplateData)
+}
+func answer(w http.ResponseWriter, r *http.Request) {
+	guessBox := []GuessBox {
+		GuessBox{"pokemonGuess"},
+	}
 
-	fmt.Println(testColor)
-	fmt.Println(testID)
-	fmt.Println(testText)
-	fmt.Println(testGenera)
-	fmt.Println(testEvolveFrom)
-	fmt.Println(testName)
+	var answerResponse string
 
-	fmt.Println("ok")
-	*/
+	r.ParseForm()
+	guessResult := r.Form.Get("pokemonGuess")
+	lowerGuessResult := strings.ToLower(guessResult)
+
+	randomGuessINT, _ := strconv.Atoi(randomGuess)
+	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomGuess+".png"
+	if randomGuessINT <= 9 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/00"+randomGuess+".png"
+	} else if randomGuessINT <= 99 {
+		image = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/0"+randomGuess+".png"
+	}
+
+	errorMessage := "En ukjent feil har oppstått!"
+	answer := false
+	if _, err := strconv.Atoi(guessResult); err == nil {
+		errorMessage = "Du kan ikke skrive inn numre!"
+	} else if guessResult == "" {
+		errorMessage = "Du må skrive inn noe!"
+	} else {
+		if lowerGuessResult == pokemonList[randomGuessINT-1] {
+			errorMessage = ""
+			answerResponse = "Riktig svar 1!"
+			points++
+			answer = true
+		} else if _, err := strconv.Atoi(lowerGuessResult); err == nil {
+			errorMessage = ""
+			answerResponse = "Riktig svar 2!"
+			points++
+			answer = true
+		}
+		if answer == false {
+			errorMessage = "Feil svar! Prøv igjen!"
+			points--
+		}
+
+		fmt.Println(guessResult)
+		fmt.Println(pokemonList[randomGuessINT-1])
+	}
+
+	tmpl := template.Must(template.ParseFiles("C:/GitHub/Team-Lenny/obligatorisk-oppgave-4/src/guess.html"))
+
+	pokemonTemplateData := PageData {
+		PageTitle: "Guess who's that Pokemon!",
+		Guess: guessBox,
+		Image: image,
+		Response: answerResponse,
+		Points: points,
+		Error: errorMessage,
+	}
+
+	tmpl.Execute(w, pokemonTemplateData)
 }
 
 func pokemon(w http.ResponseWriter, r *http.Request) {
@@ -199,7 +270,7 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 	randomPokemon := strconv.Itoa(random)
 
 	previousImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random-1)+".png"
-	previousPokemon := strconv.Itoa(random-1)
+	//previousPokemon := strconv.Itoa(random-1)
 	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomPokemon+".png"
 	nextImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random+1)+".png"
 	if random <= 9 {
@@ -213,8 +284,9 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 	}
 	if random == 1 {
 		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(len(pokemonList))+".png"
-		previousPokemon = strconv.Itoa(len(pokemonList))
+		//previousPokemon = strconv.Itoa(len(pokemonList))
 	}
+	//previousPokemonName := pokemonList[random-1]
 
 	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+randomPokemon+"/") // Henter informasjon om en tilfeldig Pokemon
 	if err != nil {
@@ -232,12 +304,16 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 
 	staticSprite := informationObject.Sprite.FrontDefault
 	sprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
+	staticShiny := informationObject.Sprite.FrontShiny
+	shinySprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
 	if random <= 721 {
 		sprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
+		staticShiny = informationObject.Sprite.FrontShiny
+		shinySprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
 	} else {
 		sprite = informationObject.Sprite.FrontDefault
+		shinySprite = informationObject.Sprite.FrontShiny
 	}
-	shinySprite := informationObject.Sprite.FrontShiny
 
 	specie, err := http.Get("https://pokeapi.co/api/v2/pokemon-species/"+randomPokemon+"/") // Henter informasjon om en tilfeldig Pokemon
 	if err != nil {
@@ -262,6 +338,7 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 	//testGenera := specieObject.Genera[2]
 	//testEvolveFrom := specieObject.EvolvesFromSpecies.Name
 	//testName := specieObject.Name
+	specieColor := specieObject.Color.Name
 
 	calcHeight := float64(informationObject.Height) / 10
 	calcWeight := float64(informationObject.Weight) / 10
@@ -380,13 +457,14 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 		PageTitle: "Pokemon GO(lang)",
 		//PageBackground: DittoBackground,
 		Search: searchBox,
-		PreviousPokemonName: previousPokemon,
+		//PreviousPokemonName: previousPokemon,
 		PreviousPokemon: previousImage,
 		Image: image,
-		NextPokemonName: strconv.Itoa(random+1),
+		//NextPokemonName: strings.Title(pokemonList[random+1])+" #"+strconv.Itoa(random+1),
 		NextPokemon: nextImage,
 		StaticSprite: staticSprite,
 		Sprite: sprite,
+		StaticShiny: staticShiny,
 		ShinySprite: shinySprite,
 
 		ID: informationObject.ID,
@@ -400,6 +478,7 @@ func pokemon(w http.ResponseWriter, r *http.Request) {
 		Abilities: pokemonAbilityList,
 
 		//Text: pokemonTextList[1],
+		Color: specieColor,
 	}
 
 	tmpl.Execute(w, pokemonTemplateData)
@@ -448,7 +527,7 @@ func generation(w http.ResponseWriter, r *http.Request) {
 	randomPokemon := strconv.Itoa(random)
 
 	previousImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random-1)+".png"
-	previousPokemon := strconv.Itoa(random-1)
+	//previousPokemon := strconv.Itoa(random-1)
 	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+randomPokemon+".png"
 	nextImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(random+1)+".png"
 	if random <= 9 {
@@ -462,7 +541,7 @@ func generation(w http.ResponseWriter, r *http.Request) {
 	}
 	if random == 1 {
 		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(len(pokemonList))+".png"
-		previousPokemon = strconv.Itoa(len(pokemonList))
+		//previousPokemon = strconv.Itoa(len(pokemonList))
 	}
 
 	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+randomPokemon+"/") // Henter informasjon om en tilfeldig Pokemon
@@ -481,12 +560,16 @@ func generation(w http.ResponseWriter, r *http.Request) {
 
 	staticSprite := informationObject.Sprite.FrontDefault
 	sprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
-	if r.URL.Path != "/gen7" {
+	staticShiny := informationObject.Sprite.FrontShiny
+	shinySprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
+	if random <= 721 {
 		sprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
+		staticShiny = informationObject.Sprite.FrontShiny
+		shinySprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
 	} else {
 		sprite = informationObject.Sprite.FrontDefault
+		shinySprite = informationObject.Sprite.FrontShiny
 	}
-	shinySprite := informationObject.Sprite.FrontShiny
 
 	calcHeight := float64(informationObject.Height) / 10
 	calcWeight := float64(informationObject.Weight) / 10
@@ -607,13 +690,14 @@ func generation(w http.ResponseWriter, r *http.Request) {
 		PokemonAmount: limit,
 		PokemonGen: chosenGeneration,
 		PokemonList: pokemonList,
-		PreviousPokemonName: previousPokemon,
+		//PreviousPokemonName: strings.Title(pokemonList[random])+" #"+strconv.Itoa(random),
 		PreviousPokemon: previousImage,
 		Image: image,
-		NextPokemonName: strconv.Itoa(random+1),
+		//NextPokemonName: strings.Title(pokemonList[random])+" #"+strconv.Itoa(random),
 		NextPokemon: nextImage,
 		StaticSprite: staticSprite,
 		Sprite: sprite,
+		StaticShiny: staticShiny,
 		ShinySprite: shinySprite,
 
 		ID: informationObject.ID,
@@ -657,6 +741,7 @@ func search(w http.ResponseWriter, r *http.Request) {
 			} else if _, err := strconv.Atoi(lowerSearchResult); err == nil {
 				errorMessage = ""
 				searchID = lowerSearchResult
+				break
 			}
 		}
 		if searchID == "0" {
@@ -667,7 +752,7 @@ func search(w http.ResponseWriter, r *http.Request) {
 
 	searchINT, _ := strconv.Atoi(searchID)
 	previousImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(searchINT-1)+".png"
-	previousPokemon := strconv.Itoa(searchINT-1)
+	//previousPokemon := strconv.Itoa(searchINT-1)
 	image := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+searchID+".png"
 	nextImage := "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(searchINT+1)+".png"
 	if searchINT <= 9 {
@@ -681,7 +766,7 @@ func search(w http.ResponseWriter, r *http.Request) {
 	}
 	if searchID == "1" {
 		previousImage = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"+strconv.Itoa(len(pokemonList))+".png"
-		previousPokemon = strconv.Itoa(len(pokemonList))
+		//previousPokemon = strconv.Itoa(len(pokemonList))
 	}
 
 	information, err := http.Get("https://pokeapi.co/api/v2/pokemon/"+searchID+"/") // Henter informasjon om Pokemon
@@ -700,12 +785,16 @@ func search(w http.ResponseWriter, r *http.Request) {
 
 	staticSprite := informationObject.Sprite.FrontDefault
 	sprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
+	staticShiny := informationObject.Sprite.FrontShiny
+	shinySprite := "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
 	if searchINT <= 721 {
 		sprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados/"+informationObject.Name+".gif"
+		staticShiny = informationObject.Sprite.FrontShiny
+		shinySprite = "http://www.pkparaiso.com/imagenes/xy/sprites/animados-shiny/"+informationObject.Name+".gif"
 	} else {
 		sprite = informationObject.Sprite.FrontDefault
+		shinySprite = informationObject.Sprite.FrontShiny
 	}
-	shinySprite := informationObject.Sprite.FrontShiny
 
 	calcHeight := float64(informationObject.Height) / 10
 	calcWeight := float64(informationObject.Weight) / 10
@@ -824,14 +913,15 @@ func search(w http.ResponseWriter, r *http.Request) {
 		PageTitle: "Søk",
 		//PageBackground: DittoBackground,
 		Search: searchBox,
-		SearchError: errorMessage,
-		PreviousPokemonName: previousPokemon,
+		Error: errorMessage,
+		//PreviousPokemonName: strings.Title(pokemonList[searchINT-2])+" #"+strconv.Itoa(searchINT-2),
 		PreviousPokemon: previousImage,
 		Image: image,
-		NextPokemonName: strconv.Itoa(searchINT+1),
+		//NextPokemonName: strings.Title(pokemonList[searchINT])+" #"+strconv.Itoa(searchINT),
 		NextPokemon: nextImage,
 		StaticSprite: staticSprite,
 		Sprite: sprite,
+		StaticShiny: staticShiny,
 		ShinySprite: shinySprite,
 
 		ID: informationObject.ID,

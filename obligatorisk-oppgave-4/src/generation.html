@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<!--Hovud-->
+<head>
+    <title>{{.PageTitle}}</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!--<link rel="stylesheet" type="text/css" href="style.css" />!-->
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Team Lenny" />
+
+    <style type="text/css">
+        body {
+        @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+            font-family: 'Ubuntu', sans-serif;
+
+            background-size: cover;
+            background-color: #2a4e89;
+            background-repeat: no-repeat;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #3564AE;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        li {
+            float: left;
+        }
+        li a, .dropbtn {
+            font-size: 25px;
+            display: inline-block;
+            color: #ffcb05;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        li a:hover, .dropdown:hover .dropbtn {
+            background-color: #769bd5;
+        }
+        li.dropdown {
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            font-size: 15px;
+        }
+        .dropdown-content a:hover {background-color: #f1f1f1}
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        h1 {
+            margin: auto;
+            width: calc(50% - 20px);
+            border-bottom: solid #2a4e89;
+            text-align: center;
+            color: #ffcb05;
+            padding: 0;
+        }
+        p {
+            color: #ffd633;
+        }
+        input[type=text], select {
+            width: 75%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 50%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+        i {
+            border: solid #2a4e89;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 20px;
+        }
+
+        .leftContent {
+            float: left;
+            width: 40%;
+        }
+        .leftContentBox {
+            margin-top: 10px;
+            margin-right: 10px;
+            border-radius: 10px;
+            background-color: #4f7ec9;
+        }
+        .rightContent {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: #3564AE;
+            float: right;
+            width: 60%;
+        }
+        .mainContent {
+            text-align: center;
+            padding: 10px;
+        }
+        .right {
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+
+        .left {
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+        .center {
+            text-align: center;
+            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .infoBox {
+            margin: auto;
+            padding: 10px;
+            width: 500px;
+            border-radius: 10px;
+            background-color: #769bd5;
+        }
+        .primaryTypeColor {
+            text-align: center;
+            min-width: 10px;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #{{.PrimaryTypeColor}};
+        }
+        .secondaryTypeColor {
+            text-align: center;
+            min-width: 10px;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #{{.SecondaryTypeColor}};
+        }
+        .highlight {
+            color: #ffe066;
+        }
+        .pokemonColor {
+            color: {{.Color}};
+        }
+    </style>
+</head>
+<!--End of Hovud-->
+
+<body>
+<div class="leftContent">
+    <ul>
+        <li><a href="/">Hjem</a></li>
+        <li><a href="/quiz">Quiz</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Generasjon</a>
+            <div class="dropdown-content">
+                <a href="/gen1">Gen I</a>
+                <a href="/gen2">Gen II</a>
+                <a href="/gen3">Gen III</a>
+                <a href="/gen4">Gen IV</a>
+                <a href="/gen5">Gen V</a>
+                <a href="/gen6">Gen VI</a>
+                <a href="/gen7">Gen VII</a>
+            </div>
+        </li>
+    </ul>
+
+<div class="leftContentBox">
+    <h1>{{.PageTitle}}</h1>
+
+<div class="mainContent">
+{{.PokemonList}}
+</div>
+</div>
+</div>
+
+<div class="rightContent">
+<h1 style="margin-bottom: 20px; margin-top: 20px;">{{.Name}} <span class="pokemonColor">#{{.ID}}</span></h1>
+
+<table class="center">
+<tr>
+<td>
+<p style="border-bottom: solid #2a4e89;">{{.PreviousPokemonName}}</p>
+        <img src="{{.PreviousPokemon}}"  style="background-color: #769bd5;  width: 150px; border-radius: 15px;" />
+</td>
+    <td style="width: 75px;">
+        <i class="left" />
+    </td>
+<td>
+        <img src="{{.Image}}"  style="background-color: #9db7e1; width: 300px; border-radius: 15px;" />
+</td>
+    <td style="width: 75px;">
+        <i class="right" />
+    </td>
+<td>
+<p style="border-bottom: solid #2a4e89;">{{.NextPokemonName}}</p>
+        <img src="{{.NextPokemon}}"  style="background-color: #769bd5; width: 150px; border-radius: 15px;" />
+</td>
+</tr>
+</table>
+
+<table class="center">
+<tr>
+<td>
+        <img style="vertical-align: middle;" src="{{.StaticSprite}}" />
+</td>
+<td>
+        <img style="vertical-align: middle;" src="{{.Sprite}}" />
+</td>
+<td>
+        <img style="vertical-align: middle;" src="{{.StaticShiny}}" />
+</td>
+<td>
+        <img style="vertical-align: middle;" src="{{.ShinySprite}}" />
+</td>
+</tr>
+</table>
+
+
+<div class="infoBox">
+<table>
+<tr>
+<td>Høyde: <span class="highlight">{{.Height}}</span> m</td>
+<td>Vekt: <span class="highlight">{{.Weight}}</span> kg</td>
+</tr>
+    <tr>
+        <td>Type:</td>
+        <td>Evner:</td>
+    </tr>
+<tr>
+<td><div class="primaryTypeColor">{{.PrimaryType}}</div> <div class="secondaryTypeColor">{{.SecondaryType}}</div></td>
+<td>{{.Abilities}}</td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>

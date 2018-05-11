@@ -8,4 +8,6 @@ Det vil også være en liste over alle pokemonene i den generasjonen du har valg
 
 Dette vil kunne være et nyttig verktøy for brukeren hvis for eksempel han/hun kommer i en krangel med en venn
 over hvor mye en Electabuzz veier. De kan da enkelt søke opp "Electabuzz" eller id-en dens "125" i vår webapplikasjon 
-og få opp relevant informasjon. Applikasjonen kan også brukes som en relativt lightweight pokedex.
+og få opp relevant informasjon.
+
+Applikasjonen kan også brukes som en relativt lightweight pokedex.

@@ -10,4 +10,7 @@ Dette vil kunne være et nyttig verktøy for brukeren hvis for eksempel han/hun 
 over hvor mye en Electabuzz veier. De kan da enkelt søke opp "Electabuzz" eller id-en dens "125" i vår webapplikasjon 
 og få opp relevant informasjon.
 
+Webapplikasjonen har også en quiz som man kan bruke som et hjelpemiddel til å lære seg navnene på alle pokèmonene, eller
+for å friske opp kunnskapene sine.
+
 Applikasjonen kan også brukes som en relativt lightweight pokedex.

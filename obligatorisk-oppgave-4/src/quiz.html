@@ -74,7 +74,7 @@
 
         h1 {
             margin: auto;
-            width: calc(50% - 20px);
+            width: calc(75% - 20px);
             border-bottom: solid #2a4e89;
             text-align: center;
             color: #ffcb05;
@@ -102,9 +102,24 @@
             border-radius: 4px;
             cursor: pointer;
         }
-
         input[type=submit]:hover {
             background-color: #45a049;
+        }
+        a {
+            color: white;
+        }
+        .button {
+            margin: auto;
+            text-align: center;
+            color: white;
+            width: 25%;
+            background-color: #990000;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
         i {
             border: solid #2a4e89;
@@ -135,47 +150,11 @@
             text-align: center;
             padding: 10px;
         }
-        .right {
-            transform: rotate(-45deg);
-            -webkit-transform: rotate(-45deg);
-        }
-
-        .left {
-            transform: rotate(135deg);
-            -webkit-transform: rotate(135deg);
-        }
         .center {
             text-align: center;
             margin: auto;
             margin-left: auto;
             margin-right: auto;
-        }
-        .infoBox {
-            margin: auto;
-            padding: 10px;
-            width: 500px;
-            border-radius: 10px;
-            background-color: #769bd5;
-        }
-        .primaryTypeColor {
-            text-align: center;
-            min-width: 10px;
-            border-radius: 5px;
-            padding: 5px;
-            background-color: #{{.PrimaryTypeColor}};
-        }
-        .secondaryTypeColor {
-            text-align: center;
-            min-width: 10px;
-            border-radius: 5px;
-            padding: 5px;
-            background-color: #{{.SecondaryTypeColor}};
-        }
-        .highlight {
-            color: #ffe066;
-        }
-        .pokemonColor {
-            color: {{.Color}};
         }
     </style>
 </head>
@@ -185,7 +164,7 @@
     <div class="leftContent">
         <ul>
             <li><a href="/">Hjem</a></li>
-            <li><a href="/">Gjett</a></li>
+            <li><a href="/guess">Gjett</a></li>
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn">Generasjon</a>
                 <div class="dropdown-content">
@@ -204,24 +183,31 @@
             <h1>{{.PageTitle}}</h1>
 
             <div class="mainContent">
+                <p>Det er kun lov å bruke bokstaver</p>
+                <h3 style="color: #990000;">{{.Error}}</h3>
+                <h3 style="color: #4CAF50;">{{.Response}}</h3>
+
                 {{with $1:=.Guess}}
-                    <form action="/answer" method="post">
+                    <form action="/response" method="post">
                         {{range $1}}
                             <input type="text" name="{{.PokemonGuess}}" placeholder="Skriv inn svaret ditt her">
                         {{end}}
-                        <input type="submit" value="Søk">
+                        <input type="submit" value="Gjett!">
+                        <div class="button"><a href="/guess">Jeg vet ikke</a></div>
                     </form>
+
                 {{end}}
-                <h3 style="color: #990000;">{{.Error}}</h3>
-                <h3 style="color: #990000;">{{.Response}}</h3>
                 <h3>Du har {{.Points}} poeng</h3>
-                <h3><a href="/guess">Ny runde</a></h3>
+
+                {{if .AnswerCheck}}
+                    <div class="button" style="background: #2a4e89"><a href="/guess">Ny runde</a></div>
+                {{end}}
             </div>
         </div>
     </div>
 
     <div class="rightContent center" style="padding-top: 65px; padding-bottom: 65px;">
-        <img src="{{.Image}}"  style="background-color: #9db7e1; width: 300px; border-radius: 15px;" />
+        <img src="{{.Image}}"  style="background-color: #9db7e1; border-radius: 15px;" />
     </div>
 </body>
 </html>

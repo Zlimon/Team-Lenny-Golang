@@ -14,7 +14,7 @@ Deltagere:
 
 *Bruk filen fileinfo.txt i programmet*
 
-[Lenke til oppgave 1](/src/oppgave1)
+[Lenke til oppgave 1](src/oppgave1)
 
 [fileinfo.go](src/oppgave1/fileinfo.go)
 

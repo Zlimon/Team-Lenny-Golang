@@ -91,7 +91,7 @@ Fyll ut manglende plasser med ekstra 0'er
 ```
 
 ## Oppgave 2
-[Lenke til oppgave 2](/src/oppgave2)
+[Lenke til oppgave 2](src/oppgave2)
 
 a) [bubblesort.go](src/oppgave2/bubblesort.go)
 
@@ -100,12 +100,12 @@ b) [bubblesort_test.go](src/oppgave2/bubblesort_test.go)
 c) [sorting_test.go](src/oppgave2/sorting_test.go)
 
 ## Oppgave 3
-[Lenke til oppgave 3](/src/oppgave3)
+[Lenke til oppgave 3](src/oppgave3)
 
 [loop.go](src/oppgave3/loop.go)
 
 ## Oppgave 4
-[Lenke til oppgave 4](/src/oppgave4)
+[Lenke til oppgave 4](src/oppgave4)
 
 a) [hexloop.go](src/oppgave4/hexloop.go)
 
